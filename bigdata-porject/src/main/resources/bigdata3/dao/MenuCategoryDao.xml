@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bigdata3.dao.MenuCategoryDao">
+  <resultMap type="menuCategory" id="menuCategoryMap">
+    <id column="mcno" property="mCategoryNo"/>
+    <result column="mtype" property="category"/>
+    <result column="mcdate" property="createDate"/>
+    <result column="delchk" property="deleteCheck"/>
+    <result column="mccontent" property="categoryContent"/>
+  </resultMap>
+  
+  <select id="list" resultMap="menuCategoryMap" parameterType="map">
+    select mcno, mtype, mcdate, delchk, mccontent
+    from menu_category
+    order by mcno
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="noneSize" resultMap="menuCategoryMap" parameterType="map">
+    select mcno, mtype, mcdate, delchk, mccontent
+    from menu_category
+    order by mcno
+  </select>
+  
+  <select id="noSize" resultMap="menuCategoryMap" parameterType="map">
+    select mcno, mtype, mcdate, delchk, mccontent
+    from menu_category
+    order by mcno
+  </select>
+  
+  <select id="selectOne" resultMap="menuCategoryMap" parameterType="int">
+    select mcno, mtype, mcdate, delchk, mccontent
+    from menu_category
+    where mcno = #{mCategoryNo}
+  </select>
+  
+  <select id="count" resultType="int">
+    select count(*) from menu_category
+  </select>
+  
+  <insert id="insert" parameterType="menu" useGeneratedKeys="true" keyColumn="mno" keyProperty="mCategoryNo">
+    insert into menu_category(mtype, mcdate, delchk, mccontent)
+    values(#{category}, now(), default, #{categoryContent})
+  </insert>
+  
+  <update id="delete" parameterType="int">
+    update menu_category
+    set
+    delchk = 'Y'
+    where mcno = #{mCategoryNo}
+  </update>
+
+</mapper>
