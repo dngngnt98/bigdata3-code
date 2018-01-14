@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bigdata3.dao.MenuTemplateDao">
+  <resultMap type="menuTemplate" id="menuTemplateMap">
+    <id column="mtno" property="menuTempNo"/>
+    <result column="mttype" property="menuTempType"/>
+    <result column="mtarea" property="menuArea"/>
+    <result column="mname" property="menuName"/>
+    <result column="mtype" property="menuType"/>
+    <result column="mprice" property="menuPrice"/>
+    <result column="mcontent" property="menuContent"/>
+    <result column="mtdate" property="createDate"/>
+    <result column="delchk" property="deleteCheck"/>
+  </resultMap>
+  
+  <select id="list" resultMap="menuTemplateMap" parameterType="map">
+    select mtno, mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk
+    from menu_temp
+    order by mtno 
+    limit #{startIndex}, #{pageSize}
+  </select>
+  
+  <select id="menuboard" resultMap="menuTemplateMap" parameterType="map">
+    select mtno, mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk
+    from menu_temp
+  </select>
+  
+  <select id="count" resultType="int">
+    select count(*) from menu_temp
+  </select>
+  
+  <insert id="insert" parameterType="menu" useGeneratedKeys="true" keyColumn="mtno" keyProperty="menuTempNo">
+    insert into menu_temp(mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk)
+    values(#{menuTempType}, #{menuArea}, #{menuName}, #{menuType}, #{menuPrice}, #{menuContent}, now(), default)
+  </insert>
+  
+  <!-- <update id="update" parameterType="menu">
+    update menu
+    set
+    mname = #{menuName},
+    mprice = #{menuPrice},
+    mcontent = #{menuContent},
+    mdate = #{createDate}
+    where mno = #{menuNo}
+  </update> -->
+  
+  <update id="delete" parameterType="int">
+    update menu_temp
+    set
+    delchk = 'Y'
+    where mtno = #{menuTempNo}
+  </update>
+
+</mapper>
