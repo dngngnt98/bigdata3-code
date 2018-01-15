@@ -44,11 +44,6 @@
     			 left outer join event_template et on e.etpno=et.etpno
     			 left outer join event_file ef on e.evno=ef.evno
     where e.evno=#{eventNo}
-    
-    
   </select>
-
-
-
-
+  
 </mapper>

@@ -29,8 +29,17 @@
 	<!-- Nav -->
 	<jsp:include page="../navi.jsp"></jsp:include>
 
+	<!-- Banner -->
+	<section id="banner">
+	<div class="inner">
+		<a href="#main" class="button fit scrolly"
+			style="background-color: darkgoldenrod; margin: 0 0 3em 0;">Move
+			Menu</a>
+	</div>
+	</section>
+
 	<!-- Main body -->
-	<div clsss="container">
+	<div class="container" id="main">
 		<section class="wrapper">
 		<div class="inner">
 			<header class="align-center">
@@ -63,7 +72,7 @@
 					<tfoot>
 						<tr>
 							<td colspan="4"></td>
-							<td><a href="../board/writeform" class="button" id="write">글쓰기</a></td>
+							<td><a href="../board/new" class="button" id="write">글쓰기</a></td>
 						</tr>
 					</tfoot>
 				</table>

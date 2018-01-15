@@ -34,6 +34,11 @@
     where b.bmno=#{branchmasterNo}
   </select>
   
+  <select id="noSize" resultMap="branchMap">
+    select bname, bno, btel, null as save_file_name
+    from branch
+  </select>
+  
   <select id="selectOne" resultMap="branchMap" parameterType="int">
     select  b.bno, b.bname, b.btel, b.baddr, b.bintro, b.barea, bm.bmno, bm.bmname, bf.save_file_name
     from branch b left join branch_master bm on b.bmno=bm.bmno 

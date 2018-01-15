@@ -5,8 +5,9 @@ import java.sql.Date;
 public class MenuTemplate extends Menu {
   // 여기에 지점 참조해야함
   private int menuTempNo;
-  private String menuTempType;
+  private String branchName;
   private String menuArea;
+  private String menuTempType;
   private String menuName;
   private String menuType;
   private String menuPrice;
@@ -17,9 +18,10 @@ public class MenuTemplate extends Menu {
 
   @Override
   public String toString() {
-    return "MenuTemplate [menuTempNo=" + menuTempNo + ", menuTempType=" + menuTempType + ", menuArea=" + menuArea
-        + ", menuName=" + menuName + ", menuType=" + menuType + ", menuPrice=" + menuPrice + ", menuContent="
-        + menuContent + ", image=" + image + ", createDate=" + createDate + ", deleteCheck=" + deleteCheck + "]";
+    return "MenuTemplate [menuTempNo=" + menuTempNo + ", branchName=" + branchName + ", menuArea=" + menuArea
+        + ", menuTempType=" + menuTempType + ", menuName=" + menuName + ", menuType=" + menuType + ", menuPrice="
+        + menuPrice + ", menuContent=" + menuContent + ", image=" + image + ", createDate=" + createDate
+        + ", deleteCheck=" + deleteCheck + "]";
   }
 
   public int getMenuTempNo() {
@@ -30,12 +32,12 @@ public class MenuTemplate extends Menu {
     this.menuTempNo = menuTempNo;
   }
 
-  public String getMenuTempType() {
-    return menuTempType;
+  public String getBranchName() {
+    return branchName;
   }
 
-  public void setMenuTempType(String menuTempType) {
-    this.menuTempType = menuTempType;
+  public void setBranchName(String branchName) {
+    this.branchName = branchName;
   }
 
   public String getMenuArea() {
@@ -44,6 +46,14 @@ public class MenuTemplate extends Menu {
 
   public void setMenuArea(String menuArea) {
     this.menuArea = menuArea;
+  }
+
+  public String getMenuTempType() {
+    return menuTempType;
+  }
+
+  public void setMenuTempType(String menuTempType) {
+    this.menuTempType = menuTempType;
   }
 
   public String getMenuName() {

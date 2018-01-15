@@ -7,6 +7,8 @@ import bigdata3.domain.BoardCategory;
 
 public interface BoardCategoryDao {
 	public List<BoardCategory> list(Map<String, Object> categoryMap);
+	
+	public List<BoardCategory> noSize();
 
 	public void insert(BoardCategory boardCategory);
 

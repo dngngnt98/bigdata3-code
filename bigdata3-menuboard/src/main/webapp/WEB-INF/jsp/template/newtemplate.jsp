@@ -350,84 +350,60 @@
 			<!-- /.sidebar-shortcuts -->
 
 			<ul class="nav nav-list">
-				<li class="active"><a href="index_admin.html"> <i
+				<li class="active"><a href="main"> <i
 						class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
 							Dashboard </span>
 				</a> <b class="arrow"></b></li>
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-bar-chart-o"></i> <span class="menu-text">
-							UI &amp; Elements </span> <b class="arrow fa fa-angle-down"></b>
+							Board Mgt </span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class=""><a href="#" class="dropdown-toggle"> <i
-								class="menu-icon fa fa-caret-right"></i> Layouts <b
-								class="arrow fa fa-angle-down"></b>
-						</a> <b class="arrow"></b>
-
-							<ul class="submenu">
-								<li class=""><a href="top-menu.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Top Menu
-								</a> <b class="arrow"></b></li>
-
-								<li class=""><a href="two-menu-2.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Two Menus 2
-								</a> <b class="arrow"></b></li>
-
-								<li class=""><a href="mobile-menu-1.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Default Mobile Menu
-								</a> <b class="arrow"></b></li>
-
-								<li class=""><a href="mobile-menu-2.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Mobile Menu 2
-								</a> <b class="arrow"></b></li>
-
-							</ul></li>
-
-						<li class=""><a href="typography.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Typography
+						<li class=""><a href="../menuboard/confirm"> <i
+								class="menu-icon fa fa-caret-right"></i> Menu Confirm
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a href="buttons.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Buttons &amp; Icons
+						<li class=""><a href="../menuboard/new"> <i
+								class="menu-icon fa fa-caret-right"></i> Menu Template
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a href="treeview.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Treeview
+						<li class=""><a href="../category/list"> <i
+								class="menu-icon fa fa-caret-right"></i> Menu category
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a href="nestable-list.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Nestable Lists
+						<li class=""><a href="../menu/list"> <i
+								class="menu-icon fa fa-caret-right"></i> Menu list
+						</a> <b class="arrow"></b></li>
+
+						<li class=""><a href="eventlist"> <i
+								class="menu-icon fa fa-caret-right"></i> Event Board
+						</a> <b class="arrow"></b></li>
+
+						<li class=""><a href="../board/list"> <i
+								class="menu-icon fa fa-caret-right"></i> Board
 						</a> <b class="arrow"></b></li>
 
 					</ul></li>
 
-				<li class="active open"><a href="#" class="dropdown-toggle">
-						<i class="menu-icon fa fa-pencil-square-o"></i> <span
+				<li class=""><a href="#" class="dropdown-toggle"> <i
+						class="menu-icon fa fa-pencil-square-o"></i> <span
 						class="menu-text"> Stores </span> <b
 						class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class="active"><a href="admin-form-detail.html"> <i
+						<li class=""><a href="admin-form-detail.html"> <i
 								class="menu-icon fa fa-caret-right"></i> Store Infomation
 						</a> <b class="arrow"></b></li>
 
-						<li class=""><a href="store_list.html"> <i
+						<li class=""><a href="branchlist"> <i
 								class="menu-icon fa fa-caret-right"></i> Store List
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="form-wizard.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Wizard &amp; Validation
 						</a> <b class="arrow"></b></li>
 
 						<li class=""><a href="wysiwyg.html"> <i
 								class="menu-icon fa fa-caret-right"></i> Wysiwyg &amp; Markdown
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="dropzone.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Dropzone File Upload
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 
@@ -569,14 +545,27 @@
 							<!-- PAGE CONTENT BEGINS -->
 							<form class="form-horizontal" role="form" action="insert"
 								method="post" enctype="multipart/form-data">
+
+								<div class="form-group">
+									<label class="col-sm-3 control-label no-padding-right"
+										for="form-field-1-1"> 매장</label>
+									<div class="col-sm-5">
+										<select id="branch" name="branchNo">
+											<c:forEach items="${branchList}" var="branch">
+												<option value="${branch.no}">${branch.name}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+
 								<div class="form-group">
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1-1"> 타입</label>
 									<div class="col-sm-5">
 										<select id="menuTempType" name=menuTempType
 											class="col-xs-12 col-sm-11" style="height: 34px">
-											<option value="메뉴" name="menuTempType">메뉴</option>
-											<option value="이벤트" name="menuTempType">이벤트</option>
+											<option value="메뉴1" name="menuTempType">메뉴1</option>
+											<option value="메뉴2" name="menuTempType">메뉴2</option>
 										</select>
 									</div>
 								</div>
@@ -585,8 +574,8 @@
 									<label class="col-sm-3 control-label no-padding-right"
 										for="form-field-1-1"> 영역</label>
 									<div class="col-sm-5">
-										<select id="type" name="menuArea"
-											class="col-xs-12 col-sm-11" style="height: 34px">
+										<select id="type" name="menuArea" class="col-xs-12 col-sm-11"
+											style="height: 34px">
 											<option value="영역1" name="menuArea">영역1</option>
 											<option value="영역2" name="menuArea">영역2</option>
 											<option value="영역3" name="menuArea">영역3</option>
@@ -606,7 +595,6 @@
 									<!-- 위에서 템플릿 선택한것에 따라 메뉴 수 만큼 panel panel-defult 출력 -->
 									<div class="accordion-style1 panel-group" id="accordian">
 										<div class="panel panel-defult">
-											<!-- forEach? -->
 											<div class="panel-heading">
 												<h4 class="panel-title">
 
@@ -628,7 +616,8 @@
 															<div class="col-xs-12 col-sm-6">
 																<div class="image fit">
 																	<img class="img-thumbnail" id="output1"
-																		alt="menuboard #1 image" items="" var="path" src="" />
+																		alt="menuboard #1 image"
+																		src="../download/${list.menuImage}" />
 																</div>
 															</div>
 
@@ -659,8 +648,7 @@
 																	<label for="menuTitle"> 가격</label>
 																	<div>
 																		<input type="text" class="col-xs-10" name="menuPrice"
-																			id="menuPrice" value="" placeholder="메뉴 가격 출력"
-																			 />
+																			id="menuPrice" value="" placeholder="메뉴 가격 출력" />
 																	</div>
 																</div>
 
@@ -669,7 +657,7 @@
 																	<div>
 																		<input type="text" class="col-xs-10" id="menuContent"
 																			name="menuContent"
-																			placeholder="기타사항 출력 예) 원산지, 칼로리, 외국어표기 등"/>
+																			placeholder="기타사항 출력 예) 원산지, 칼로리, 외국어표기 등" />
 																	</div>
 																</div>
 															</div>
@@ -791,18 +779,21 @@
       menuName:'${menu.menuName}',
       menuPrice:'${menu.menuPrice}',
       menuContent:'${menu.menuContent}',
+      fileName:'${menu.menuImage.fileName}' 
     };
     </c:forEach>
     
     var mtype = document.getElementById("menuType");
     var mprice = document.getElementById("menuPrice");
     var mcontent = document.getElementById("menuContent");
+    var fileName = document.getElementById("output1");
 
     $('#menuName').on('change', function() {
       var menuName = $(this).prop('value');
       mtype.value = (menuList[menuName].menuType);
       mprice.value = (menuList[menuName].menuPrice);
       mcontent.value = (menuList[menuName].menuContent);
+      fileName.value = (menuList[menuName].fileName);
     })
 	    
     

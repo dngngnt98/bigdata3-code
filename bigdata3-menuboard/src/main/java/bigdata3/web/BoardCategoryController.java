@@ -15,7 +15,7 @@ import bigdata3.domain.BranchMaster;
 import bigdata3.service.BoardCategoryService;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/board/category")
 @SessionAttributes("loginBranchMaster")
 public class BoardCategoryController {
 

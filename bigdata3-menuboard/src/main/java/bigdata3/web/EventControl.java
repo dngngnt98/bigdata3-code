@@ -103,7 +103,6 @@ public class EventControl {
 		}
 		model.addAttribute("event", event);
 		return "event/eventconfirm";
-
 	}
 	
 	@RequestMapping("eventboard")

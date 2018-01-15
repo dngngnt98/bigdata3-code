@@ -351,126 +351,102 @@
 			<!-- /.sidebar-shortcuts -->
 
 			<ul class="nav nav-list">
-				<li class="active"><a href="index_admin.html"> <i
-						class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
-							Dashboard </span>
-				</a> <b class="arrow"></b></li>
+        <li class=""><a href="main"> <i
+            class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
+              Dashboard </span>
+        </a> <b class="arrow"></b></li>
 
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-bar-chart-o"></i> <span class="menu-text">
-							UI &amp; Elements </span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
+        <li class=""><a href="#" class="dropdown-toggle"> <i
+            class="menu-icon fa fa-bar-chart-o"></i> <span class="menu-text">
+              Board Mgt </span> <b class="arrow fa fa-angle-down"></b>
+        </a> <b class="arrow"></b>
 
-					<ul class="submenu">
-						<li class=""><a href="#" class="dropdown-toggle"> <i
-								class="menu-icon fa fa-caret-right"></i> Layouts <b
-								class="arrow fa fa-angle-down"></b>
-						</a> <b class="arrow"></b>
+          <ul class="submenu">
+            <li class=""><a href="../menuboard/confirm"> <i
+                class="menu-icon fa fa-caret-right"></i> Menu Confirm
+            </a> <b class="arrow"></b></li>
 
-							<ul class="submenu">
-								<li class=""><a href="top-menu.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Top Menu
-								</a> <b class="arrow"></b></li>
+            <li class=""><a href="../menuboard/new"> <i
+                class="menu-icon fa fa-caret-right"></i> Menu Template
+            </a> <b class="arrow"></b></li>
 
-								<li class=""><a href="two-menu-2.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Two Menus 2
-								</a> <b class="arrow"></b></li>
+            <li class="active open"><a href="../category/list"> <i
+                class="menu-icon fa fa-caret-right"></i> Menu category
+            </a> <b class="arrow"></b></li>
 
-								<li class=""><a href="mobile-menu-1.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Default Mobile Menu
-								</a> <b class="arrow"></b></li>
+            <li class=""><a href="../menu/list"> <i
+                class="menu-icon fa fa-caret-right"></i> Menu list
+            </a> <b class="arrow"></b></li>
 
-								<li class=""><a href="mobile-menu-2.html"> <i
-										class="menu-icon fa fa-caret-right"></i> Mobile Menu 2
-								</a> <b class="arrow"></b></li>
+            <li class=""><a href="eventlist"> <i
+                class="menu-icon fa fa-caret-right"></i> Event Board
+            </a> <b class="arrow"></b></li>
 
-							</ul></li>
+            <li class=""><a href="../board/list"> <i
+                class="menu-icon fa fa-caret-right"></i> Board
+            </a> <b class="arrow"></b></li>
 
-						<li class=""><a href="typography.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Typography
-						</a> <b class="arrow"></b></li>
+          </ul></li>
 
-						<li class=""><a href="buttons.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Buttons &amp; Icons
-						</a> <b class="arrow"></b></li>
+        <li class=""><a href="#" class="dropdown-toggle"> <i
+            class="menu-icon fa fa-pencil-square-o"></i> <span
+            class="menu-text"> Stores </span> <b
+            class="arrow fa fa-angle-down"></b>
+        </a> <b class="arrow"></b>
 
-						<li class=""><a href="treeview.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Treeview
-						</a> <b class="arrow"></b></li>
+          <ul class="submenu">
+            <li class=""><a href="admin-form-detail.html"> <i
+                class="menu-icon fa fa-caret-right"></i> Store Infomation
+            </a> <b class="arrow"></b></li>
 
-						<li class=""><a href="nestable-list.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Nestable Lists
-						</a> <b class="arrow"></b></li>
+            <li class=""><a href="branchlist"> <i
+                class="menu-icon fa fa-caret-right"></i> Store List
+            </a> <b class="arrow"></b></li>
 
-					</ul></li>
+            <li class=""><a href="wysiwyg.html"> <i
+                class="menu-icon fa fa-caret-right"></i> Wysiwyg &amp; Markdown
+            </a> <b class="arrow"></b></li>
+          </ul></li>
 
-				<li class="active open"><a href="#" class="dropdown-toggle">
-						<i class="menu-icon fa fa-pencil-square-o"></i> <span
-						class="menu-text"> Stores </span> <b
-						class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
+        <li class=""><a href="calendar.html"> <i
+            class="menu-icon fa fa-calendar"></i> <span class="menu-text">
+              Calendar <span class="badge badge-transparent tooltip-error"
+              title="2 Important Events"> <i
+                class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+            </span>
+          </span>
+        </a> <b class="arrow"></b></li>
 
-					<ul class="submenu">
-						<li class="active"><a href="admin-form-detail.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Store Infomation
-						</a> <b class="arrow"></b></li>
+        <li class=""><a href="gallery.html"> <i
+            class="menu-icon fa fa-picture-o"></i> <span class="menu-text">
+              Gallery </span>
+        </a> <b class="arrow"></b></li>
 
-						<li class=""><a href="store_list.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Store List
-						</a> <b class="arrow"></b></li>
+        <li class=""><a href="#" class="dropdown-toggle"> <i
+            class="menu-icon fa fa-file-o"></i> <span class="menu-text">
+              Other Pages <span class="badge badge-primary">5</span>
+          </span> <b class="arrow fa fa-angle-down"></b>
+        </a> <b class="arrow"></b>
 
-						<li class=""><a href="form-wizard.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Wizard &amp; Validation
-						</a> <b class="arrow"></b></li>
+          <ul class="submenu">
+            <li class=""><a href="faq.html"> <i
+                class="menu-icon fa fa-caret-right"></i> FAQ
+            </a> <b class="arrow"></b></li>
 
-						<li class=""><a href="wysiwyg.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Wysiwyg &amp; Markdown
-						</a> <b class="arrow"></b></li>
+            <li class=""><a href="error-404.html"> <i
+                class="menu-icon fa fa-caret-right"></i> Error 404
+            </a> <b class="arrow"></b></li>
 
-						<li class=""><a href="dropzone.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Dropzone File Upload
-						</a> <b class="arrow"></b></li>
-					</ul></li>
+            <li class=""><a href="error-500.html"> <i
+                class="menu-icon fa fa-caret-right"></i> Error 500
+            </a> <b class="arrow"></b></li>
 
-				<li class=""><a href="calendar.html"> <i
-						class="menu-icon fa fa-calendar"></i> <span class="menu-text">
-							Calendar <span class="badge badge-transparent tooltip-error"
-							title="2 Important Events"> <i
-								class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-						</span>
-					</span>
-				</a> <b class="arrow"></b></li>
-
-				<li class=""><a href="gallery.html"> <i
-						class="menu-icon fa fa-picture-o"></i> <span class="menu-text">
-							Gallery </span>
-				</a> <b class="arrow"></b></li>
-
-				<li class=""><a href="#" class="dropdown-toggle"> <i
-						class="menu-icon fa fa-file-o"></i> <span class="menu-text">
-							Other Pages <span class="badge badge-primary">5</span>
-					</span> <b class="arrow fa fa-angle-down"></b>
-				</a> <b class="arrow"></b>
-
-					<ul class="submenu">
-						<li class=""><a href="faq.html"> <i
-								class="menu-icon fa fa-caret-right"></i> FAQ
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="error-404.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Error 404
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="error-500.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Error 500
-						</a> <b class="arrow"></b></li>
-
-						<li class=""><a href="blank.html"> <i
-								class="menu-icon fa fa-caret-right"></i> Blank Page
-						</a> <b class="arrow"></b></li>
-					</ul></li>
-			</ul>
-			<!-- /.nav-list -->
+            <li class=""><a href="blank.html"> <i
+                class="menu-icon fa fa-caret-right"></i> Blank Page
+            </a> <b class="arrow"></b></li>
+          </ul></li>
+      </ul>
+      <!-- /.nav-list -->
 
 			<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
 				<i id="sidebar-toggle-icon"
@@ -678,7 +654,7 @@
 		}
 
 		function doList() {
-			location.href = 'list.do'
+			location.href = '../category/list'
 		}
 	</script>
 	<!--[if !IE]> -->

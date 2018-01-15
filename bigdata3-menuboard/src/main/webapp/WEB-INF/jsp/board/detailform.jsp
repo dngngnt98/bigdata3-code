@@ -10,13 +10,13 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/resources/assets/css/font-awesome.min.css" />
+	href="${pageContext.servletContext.contextPath}/assets/css/font-awesome.min.css" />
 <!-- text fonts -->
 <link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/resources/assets/css/fonts.googleapis.com.css" />
+	href="${pageContext.servletContext.contextPath}/assets/css/fonts.googleapis.com.css" />
 
 <link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/resources/assets/css/board.css" />
+	href="${pageContext.servletContext.contextPath}/assets/css/board.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
 	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 <!-- Favicon and touch icons -->
 <link rel="icon"
-	href="${pageContext.servletContext.contextPath}/resources/ico/home_iot.png">
+	href="${pageContext.servletContext.contextPath}/ico/home_iot.png">
 </head>
 
 <body class="subpage">
@@ -93,7 +93,7 @@
 							<th>글 내용</th>
 							<td><textarea class="form-control" id="summernote"
 									name="boardContent" placeholder="boardContent" maxlength="140"
-									rows="7"></textarea></td>
+									rows="7">${board.boardContent}</textarea></td>
 						</tr>
 
 					</table>
@@ -105,7 +105,7 @@
 				<button type="button" class="btn btn-success" name="" id="update"
 					onclick="">수정</button>
 				<button type="button" class="btn btn-danger" name="" id="delete"
-					onclick="remove()">삭제</button>
+					onclick="">삭제</button>
 				<button type="button" class="btn btn-warning" name="" id="boardMain"
 					onclick="">목록으로</button>
 				<!-- 클릭시 noticeboard.html의 <div clsss="container" id="main">으로 이동-->
@@ -114,16 +114,11 @@
 
 				<!-- 댓글 인풋 그룹. 위의 댓글보기 버튼 누르기 전까지 화면 안보이게 숨기고 싶음... -->
 				<div class="input-groups" role="group" id="commentReply">
-					<input class="form-control" id="replySubject"
-						palceholder="댓글 제목 입력하세요" />
-					<textarea class="form-control" id="commentContent"
+					<textarea class="form-control" id="replyContent"
 						placeholder="댓글을 입력하세요"></textarea>
 					<button class="btn btn-primary" type="button" name="commentWrite"
 						id="commentWrite">댓글등록</button>
-					<input type="button" class="btn btn-success" name="commentRead"
-						id="commentRead" value="댓글읽기(${board.commentCount})"
-						onclick="getComment(1, event)">
-					<!-- ()안은 댓글의 개수를 의미. 카운트 처리 필요 -->
+					<div id="replyList"></div>
 				</div>
 
 				<!-- Comment 태그 추가 -->
@@ -153,173 +148,71 @@
 	</div>
 	</footer>
 
-	<script>
-		/*    
-		$('#boardMain').click(function() { 
-		  var result = confirm("게시판 처음화면으로 이동 하시겠습니까?"); 
-		    if(result) { 
-		      location.href = ""; => noticeboard.html <div clsss="container" id="main">위치로 이동
-		    } else { } 
-		  });
-		 */
-	</script>
-	<script>
-		/* // Perform an asynchronous HTTP (Ajax) request.
-		// 비동기 통신 Ajax를 Setting한다.
-		$.ajaxSetup({
-		    type:"POST",
-		    async:true,
-		    dataType:"json",
-		    error:function(xhr) {
-		        console.log("error html = " + xhr.statusText);
-		    }
-		});
-		
-		$(function() {
-		    $("#commentWrite").on("click", function() {
-		        $.ajax({
-		            url:"../reply/insert", // => jsp의 url 맟춰줘야함!!
-		            // data:{}에서는 EL을 ""로 감싸야 한다. 이외에는 그냥 사용한다.
-		            data:{
-		            	  subject:$("#replySubject"),
-		                commentContent:$("#commentContent").val(),
-		                boardNo:"${board.boardNo}"
-		            },
-		            beforeSend:function() {
-		                console.log("시작 전...");
-		            },
-		            complete:function() {
-		                console.log("완료 후...");
-		            },
-		            success:function(data) {            // 서버에 대한 정상응답이 오면 실행, callback
-		                if(data.result == 1) {            // 쿼리 정상 완료, executeUpdate 결과
-		                    console.log("comment가 정상적으로 입력되었습니다.");
-		                    $("#commentContent").val("");
-		                    showHtml(data.comments, 1);
-		                }
-		            }
-		        })
-		    });
-		});
-		
-		function showHtml(data, commPageNum) {
-		    let html = "<table class='table table-striped table-bordered' style='margin-top: 10px;'><tbody>";
-		    $.each(data, function(index, item) {
-		        html += "<tr align='center'>";
-		        html += "<td>" + (index+1) + "</td>";
-		        html += "<td>" + item.id + "</td>";
-		        html += "<td align='left'>" + item.commentContent + "</td>";
-		        let presentDay = item.commentDate.substring(0, 10);
-		        html += "<td>" + presentDay + "</td>";
-		        html += "</tr>";
-		    });
-		    html += "</tbody></table>";
-		    commPageNum = parseInt(commPageNum);        // 정수로 변경
-		    // commentCount는 동기화되어 값을 받아오기 때문에, 댓글 insert에 즉각적으로 처리되지 못한다.
-		    if("${article.commentCount}" > commPageNum * 10) {
-		        nextPageNum = commPageNum + 1;
-		        html +="<input type='button' class='btn btn-success' onclick='getComment(nextPageNum, event)' value='다음 comment 보기'>";
-		    }
-		    
-		    $("#showComment").html(html);
-		    $("#commentContent").val("");
-		    $("#commentContent").focus();
-		}
-		
-		function getComment(commPageNum, event) {
-		    $.ajax({
-		        url:"/board/commentRead.bbs", // => jsp의 url 맟춰줘야함!!
-		        data:{
-		            commPageNum:commPageNum*10,
-		            articleNumber:"${board.boardNumber}"
-		        },
-		        beforeSend:function() {
-		            console.log("읽어오기 시작 전...");
-		        },
-		        complete:function() {
-		            console.log("읽어오기 완료 후...");
-		        },
-		        success:function(data) {
-		            console.log("comment를 정상적으로 조회하였습니다.");
-		            showHtml(data, commPageNum);
-		            
-		            let position = $("#showComment table tr:last").position();
-		            $('html, body').animate({scrollTop : position.top}, 400);        // 두 번째 param은 스크롤 이동하는 시간
-		        }
-		    })
-		} */
-	</script>
 	<script type="text/javascript">
-		$("#commentWrite").click(
-				function() {
-					var content = $("#commentContent").val();
-					var boardNo = "${board.boardNo}"
-					$.ajax({
-						type : "post",
-						url : "../reply/write",
-						data : param,
-						success : function() {
-							alert("댓글이 등록되었습니다.");
-							replyList("1");
-						}
-					});
-				});
-
-		function listReply(num) {
+	
+	  listReply();
+		$('#commentWrite').click(function() {
+			var replyContent = $("#replyContent").val();
+			var boardNo = "${board.boardNo}"
+			var param = "replyContent=" + replyContent + "&boardNo=" + boardNo;
 			$.ajax({
-				type : "get",
-				url : "../reply/list?boardNo=${board.boardNo}",
-				success : function(result) {
-					$("#replyList").html(result);
+				type : "post",
+				url : "../reply/insert",
+				data : param,
+				success : function() {
+					alert("댓글이 등록되었습니다.");
+					replyList();
 				}
 			});
+		});
+
+		function listReply() {
+			$.ajax({
+						type : "get",
+						url : "../reply/list?boardNo=${board.boardNo}",
+						success : function(result) {
+							console.log(result);
+							var output = "<table class='table table-striped table-bordered' style='margin-top: 10px;'><tbody>";
+							for ( var i in result) {
+								output += "<tr align='left'>";
+								output += "<td>" + result[i].replyer;
+								output += "(" + result[i].createDate
+										+ ")<br>";
+								output += result[i].replyContent + "</td>";
+								output += "</tr>";
+							}
+							output += "</table>";
+							$("#replyList").html(output);
+						}
+					});
 		}
 	</script>
 	<script>
-		$(document)
-				.ready(
-						function() {
-							var sendFile = function(file, el) {
-								var form_data = new FormData();
-								form_data.append('file', file);
+		$(document).ready(function() {
+			function sendFile(file, editor, welEditable) {
+				data = new FormData();
+				data.append("uploadFile", file);
+				$.ajax({
+					data : data,
+					type : "POST",
+					url : "../board/insert",
+					cache : false,
+					contentType : false,
+					processData : false,
+					success : function(data) {
+						editor.insertImage(welEditable, data.url);
+					}
+				});
+			}
 
-								$
-										.ajax({
-											data : form_data,
-											type : "POST",
-											url : 'c:/webupload',
-											cache : false,
-											contentType : false,
-											enctype : 'multipart/form-data',
-											processData : false,
-											success : function(url) {
-												$('#summernote').summernote(
-														'insertImage', url);
-												$('#imageBoard > ul')
-														.append(
-																'<li><img src="'+ url +'" width="480" height="auto"/></li>');
-											}
-										});
-							}
-							$('#summernote')
-									.summernote(
-											{
-												height : 300,
-												minHeight : null,
-												maxHeight : null,
-												focus : true,
-												callbacks : {
-													onImageUpload : function(
-															file, editor,
-															welEditable) {
-														for (var i = files.length - 1; i >= 0; i--) {
-															sendFile(files[i],
-																	this);
-														}
-													}
-												}
-											});
-						});
+			$('#summernote').summernote({
+				height : 350,
+				onImageUpload : function(files, editor, welEditable) {
+					sendFile(files[0], editor, welEditable);
+				},
+				lang : 'ko-KR'
+			});
+		});
 	</script>
 	<script>
 		$(document).ready(function() {
@@ -333,14 +226,14 @@
 		});
 	</script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/assets/js/jquery.scrolly.min.js"></script>
+		src="${pageContext.servletContext.contextPath}/assets/js/jquery.scrolly.min.js"></script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/assets/js/jquery.scrollex.min.js"></script>
+		src="${pageContext.servletContext.contextPath}/assets/js/jquery.scrollex.min.js"></script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/assets/js/skel.min.js"></script>
+		src="${pageContext.servletContext.contextPath}/assets/js/skel.min.js"></script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/assets/js/util.js"></script>
+		src="${pageContext.servletContext.contextPath}/assets/js/util.js"></script>
 	<script
-		src="${pageContext.servletContext.contextPath}/resources/assets/js/main.js"></script>
+		src="${pageContext.servletContext.contextPath}/assets/js/main.js"></script>
 </body>
 </html>

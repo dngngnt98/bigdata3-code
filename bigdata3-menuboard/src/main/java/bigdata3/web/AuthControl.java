@@ -46,29 +46,24 @@ public class AuthControl {
 
 		String bmgrade = branchMaster.getGrade();
 
-		if (branchMaster != null) { // 현재 상태 : 아이디는 저장되지만 로그인할때마다 기억하기 체크박스 눌러줘야 다음 로그인때 저장됨.
-			session.setAttribute("loginBranchMaster", branchMaster);
-			
-			if(bmgrade.equals("admin")) {
-				return "redirect:../admin/main";
-			}
-			
-			String saveEmail = req.getParameter("saveEmail");
-			if (saveEmail != null) {
-				Cookie cookie2 = new Cookie("email", email);
-				cookie2.setMaxAge(60 * 60 * 24 * 7);
-				resp.addCookie(cookie2);
-			} else {
-				Cookie cookie2 = new Cookie("email", "");
-				cookie2.setMaxAge(0);
-				resp.addCookie(cookie2);
-			}
+		session.setAttribute("loginBranchMaster", branchMaster);
+    
+    if(bmgrade.equals("admin")) {
+    	return "redirect:../admin/main";
+    }
+    
+    String saveEmail = req.getParameter("saveEmail");
+    if (saveEmail != null) {
+    	Cookie cookie2 = new Cookie("email", email);
+    	cookie2.setMaxAge(60 * 60 * 24 * 7);
+    	resp.addCookie(cookie2);
+    } else {
+    	Cookie cookie2 = new Cookie("email", "");
+    	cookie2.setMaxAge(0);
+    	resp.addCookie(cookie2);
+    }
 
-			return "redirect:../main";
-
-		} else {
-			return "auth/form";
-		}
+    return "redirect:../main";
 	}
 
 	@RequestMapping("facebooklogin")

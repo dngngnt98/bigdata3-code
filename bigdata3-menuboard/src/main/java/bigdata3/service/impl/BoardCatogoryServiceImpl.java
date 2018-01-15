@@ -26,18 +26,23 @@ public class BoardCatogoryServiceImpl implements BoardCategoryService {
   }
 
   @Override
+  public List<BoardCategory> noSize() {
+    return boardCategoryDao.noSize();
+  }
+
+  @Override
   public void insert(BoardCategory boardCategory) {
-	  boardCategoryDao.insert(boardCategory);
+    boardCategoryDao.insert(boardCategory);
   }
 
   @Override
   public void update(BoardCategory boardCategory) {
-	  boardCategoryDao.update(boardCategory);
+    boardCategoryDao.update(boardCategory);
   }
 
   @Override
   public void delete(int boardCategoryNo) {
-	  boardCategoryDao.delete(boardCategoryNo);
+    boardCategoryDao.delete(boardCategoryNo);
   }
 
 }

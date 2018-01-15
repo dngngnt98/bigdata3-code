@@ -20,7 +20,7 @@
 		bdupdate, delchk
 		from board
 		order by bdno desc
-		limit #{start}, #{end}
+		limit #{startIndex}, #{pageSize}
 	</select>
 
 	<select id="count" resultType="int">
@@ -34,6 +34,20 @@
 		where bdno=#{boardNo}
 		order by bdno desc
 	</select>
+	
+	<select id="selectByUser" resultMap="boardMap" parameterType="map">
+    select bdno, bdtype, bdwriter, bdsubject, bdhit, bdcontent, bddate,
+    bdupdate, delchk
+    from board
+    where bdwriter = #{boardWriter}
+    order by bdno desc
+    limit #{startIndex}, #{pageSize}
+  </select>
+
+  <select id="writerCount" resultType="int" parameterType="map">
+    select count(*) from board
+    where bdwriter = #{boardWriter}
+  </select>
 
 	<insert id="insert" parameterType="board" useGeneratedKeys="true"
 		keyColumn="bdno" keyProperty="boardNo">

@@ -7,6 +7,8 @@ import bigdata3.domain.BoardCategory;
 public interface BoardCategoryService {
 
 	public List<BoardCategory> list(int startIndex, int pageSize);
+	
+	public List<BoardCategory> noSize();
 
 	public void insert(BoardCategory boardCategory);
 

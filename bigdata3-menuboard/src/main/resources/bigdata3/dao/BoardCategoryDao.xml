@@ -18,6 +18,12 @@
 		order by bcno desc
 		limit #{startIndex}, #{pageSize}
 	</select>
+	
+	<select id="noSize" resultMap="categoryMap">
+    select bcno, category, manager, bdinfo, bddate, delchk
+    from board_category
+    order by bcno desc
+  </select>
 
 	<select id="count" resultType="int">
 		select count(*) from board_category

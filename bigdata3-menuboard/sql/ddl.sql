@@ -103,38 +103,6 @@ CREATE TABLE event_template (
 
 
 
--- 게시판 정보 테이블
-
-create table board_mgr(
-    bmdno integer null,
-    bdtype varchar(20) not null,
-    manager varchar(20) not null,
-    bdinfo varchar(300) not null,
-    bddate datetime not null default now(),
-    visible char(1) not null default 'Y'
-);
-
-alter table board_mgr add constraint primary key member_bmdno_pk(bmdno);
-alter table board_mgr modify bmdno integer not null auto_increment;
-alter table board_mgr add constraint unique key member_memail_uni(bdtype);
-
--- 게시판 테이블
-
-create table board(
-    bdno integer null,
-    bdtype varchar(20) not null,
-    bdwriter varchar(20) not null,
-    bdsubject varchar(40) not null,
-    bdhit integer not null default 0,
-    bdcontent varchar(300) not null,
-    bddate datetime not null default now(),
-    bdupdate datetime not null default now(),
-    delchk char(1) not null default 'N'
-);
-
-alter table board add constraint primary key board_bdno_pk(bdno);
-alter table board modify bdno integer not null auto_increment;
-
 
 -- 댓글
 

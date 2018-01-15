@@ -28,10 +28,20 @@ public class MenuTemplateServiceImpl implements MenuTemplateService {
   public List<MenuTemplate> menuboard() {
     return menuTemplateDao.menuboard();
   }
+  
+  @Override
+  public List<MenuTemplate> confirm() {
+    return menuTemplateDao.confirm();
+  }
 
   @Override
   public void insert(MenuTemplate menuTemplate) {
     menuTemplateDao.insert(menuTemplate);
+  }
+
+  @Override
+  public void sendRequest(MenuTemplate menuTemplate) {
+    menuTemplateDao.sendRequest(menuTemplate);
   }
 
   @Override

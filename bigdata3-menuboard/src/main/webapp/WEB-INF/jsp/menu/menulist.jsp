@@ -627,11 +627,11 @@
 																			<div class="text-center">
 																				<img height="150"
 																					class="thumbnail inline no-margin-bottom"
-																					alt="menu image" src="" /> <br />
+																					alt="menu image" src="../download/${item.menuImage.fileName}" /> <br />
 																				<div class="label label-info label-xlg">
 																					<div class="inline position-relative">
 																						<a class="user-title-label"
-																							href="../download/${fileName}"> <i
+																							> <i
 																							class="ace-icon fa fa-cutlery light-green"></i> <span
 																							class="white">Menu Name</span>
 																						</a>

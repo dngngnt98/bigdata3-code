@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -41,39 +41,14 @@ body {
 
 /* 애니메이션 지점 설정하기 */
 /* 익스플로러 10 이상, 최신 모던 브라우저에서 지원 */
-@
-keyframes blink {
-	from {color: white;
-}
-
-30%
-{
-color
-
-
-
-
-:
-
-
- 
-
-
-yellow
-
-
-
-
-;
-}
-to {
-	color: red;
-	font-weight: bold;
-}
-/* 0% {color:white;}
+  @keyframes blink {
+    from {color: white;}
+    30% {color:yellow;}
+    to {color: red; font-weight: bold;}
+    /* 0% {color:white;}
       30% {color: yellow;}
       100% {color:red; font-weight: bold;} */
-}
+  }
 </style>
 <body>
 	<header id="header">
@@ -90,7 +65,7 @@ to {
 				<div class="6u 12u$(medium)">
 					<div class="row">
 						<div class="6u 12u$(small)">
-							<span class="image fit"><img src="images/menu_board01.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu_board01.jpg"
 								alt="" /></span>
 						</div>
 						<div class="6u$ 12u$(small)">
@@ -117,14 +92,14 @@ to {
 							</ul>
 						</div>
 						<div class="6u$ 12u$(small)">
-							<span class="image fit"><img src="images/menu_board02.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu_board02.jpg"
 								alt="" /></span>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="6u 12u$(small)">
-							<span class="image fit"><img src="images/menu_board03.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu_board03.jpg"
 								alt="" /></span>
 						</div>
 						<div class="6u$ 12u$(small)">
@@ -141,7 +116,7 @@ to {
 				<div class="6u 12u$(medium)">
 					<div class="row">
 						<div class="6u 12u$(small)">
-							<span class="image fit"><img src="images/menu_board04.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu_board04.jpg"
 								alt="" /></span>
 						</div>
 						<div class="6u$ 12u$(small)">
@@ -166,14 +141,14 @@ to {
 							</ul>
 						</div>
 						<div class="6u$ 12u$(small)">
-							<span class="image fit"><img src="images/menu_board05.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu_board05.jpg"
 								alt="" /></span>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="6u 12u$(small)">
-							<span class="image fit"><img src="images/menu-board06.jpg"
+							<span class="image fit"><img src="${pageContext.servletContext.contextPath}/images/menu-board06.jpg"
 								alt="" /></span>
 						</div>
 						<div class="6u$ 12u$(small)">

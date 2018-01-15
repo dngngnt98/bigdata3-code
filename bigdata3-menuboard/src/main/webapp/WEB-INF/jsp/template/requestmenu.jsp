@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	pageContext.setAttribute("ENTER", "\r\n");
+  pageContext.setAttribute("ENTER", "\r\n");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -151,18 +151,17 @@
 				</div>
 				<div class="9u$ 12u$(medium)">
 					<div class="box">
-						<form method="post" action="#">
+						<form method="post" action="sendrequest">
 							<div class="row uniform">
-
 								<div class="3u 12u$(xsmall)">
 									<h4>매장명</h4>
 								</div>
 								<div class="5u$ 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="category_storeName" id="category_storeName">
-											<option value="">- 매장선택 -</option>
-											<option value="1">VIPS강남1호점</option>
-											<option value="2">VIPS서초1호점</option>
+										<select id="branchSelect" name="branchName">
+											<c:forEach items="${branchList}" var="branch">
+												<option value="${branch.name}">${branch.name}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
@@ -171,28 +170,36 @@
 								</div>
 								<div class="5u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="category_menu_window" id="menuWindow">
-											<option value="">- 윈도우보드 템플릿을 선택하세요 -</option>
-											<option value="1">Type1</option>
-											<option value="2">Type2</option>
+										<select id="menuTempType" name=menuTempType>
+											<option value="메뉴1" name="menuTempType">메뉴1</option>
+											<option value="메뉴2" name="menuTempType">메뉴2</option>
 										</select>
 									</div>
 								</div>
+								
 								<div class="3u$ 12u$(xsmall)">
-									<!-- 템플릿 선택후 예제 이미지보기 버튼 클릭시 모달창으로 이미지를 확인할 수 있다. 템플릿 선택에 따라 적합한 미리보기를 띄워야 함 -->
-									<div class="actions">
-										<a href="#my-modal" class="button" role="button"
-											data-toggle="modal">예제 미리보기</a>
-									</div>
-								</div>
-
+                  <!-- 템플릿 선택후 예제 이미지보기 버튼 클릭시 모달창으로 이미지를 확인할 수 있다. 템플릿 선택에 따라 적합한 미리보기를 띄워야 함 -->
+                  <div class="actions">
+                    <a href="#my-modal" class="button" role="button"
+                      data-toggle="modal">예제 미리보기</a>
+                  </div>
+                </div>
+								
 								<div class="3u 12u$(xsmall)">
-									<h4>메뉴판 제목</h4>
-								</div>
-								<div class="5u$ 12u$(xsmall)">
-									<input type="text" name="Wmenu_title" id="winmenuTitle"
-										value="" placeholder="메뉴창의 타이틀을 입력 예) MyMenu01" />
-								</div>
+                  <h4>메뉴 영역</h4>
+                </div>
+                <div class="5u 12u$(xsmall)">
+                  <div class="select-wrapper">
+                    <select id="menuArea" name=menuArea>
+                      <option value="메뉴1" name="menuArea">영역1</option>
+                      <option value="메뉴2" name="menuArea">영역2</option>
+                      <option value="메뉴3" name="menuArea">영역3</option>
+                      <option value="메뉴4" name="menuArea">영역4</option>
+                      <option value="메뉴5" name="menuArea">영역5</option>
+                      <option value="메뉴6" name="menuArea">영역6</option>
+                    </select>
+                  </div>
+                </div>
 
 								<div class="6u 12u$(xsmall)">
 									<h4>상세 메뉴정보 설정</h4>
@@ -224,38 +231,31 @@
 														<div class="row">
 															<div class="col-xs-12 col-sm-6">
 																<div class="form-group">
-																	<div class="col-xs-12">
-																		<input type="file" name="photo" id="id-input-file-2">
-																	</div>
+																	<div class="image fit col-xs-12">
+                                    <img class='photo1' id="output" alt="store image"
+                                      src='../download/${menu.uploadList}'>
+                                  </div>
 																</div>
-
-																<div class="form-group">
-																	<div class="col-xs-12">
-																		<input multiple="" type="file" name="photo"
-																			id="id-input-file-3">
-																	</div>
-																</div>
-
-																<label> <input type="checkbox"
-																	name="file-format" id="id-file-format" class="ace" />
-																	<span class="lbl"> 이미지 파일만 허용</span>
-																</label>
 															</div>
-
 
 															<div class="col-xs-12 col-sm-6">
 																<div class="form-group">
 																	<label for="menuTitle"> 메뉴명</label>
 																	<div>
-																		<input type="text" name="menu_title" id="menuTitle"
-																			value="" placeholder="메뉴명을 입력하세요" />
+																		<select id="menuName1" name="menuName"
+																			data-placeholder="메뉴">
+																			<option value="none">- 메뉴 선택 -</option>
+																			<c:forEach items="${menuList}" var="list">
+																				<option value="${list.menuName}">${list.menuName}</option>
+																			</c:forEach>
+																		</select>
 																	</div>
 																</div>
 
 																<div class="form-group">
 																	<label for="menuTitle"> 가격</label>
 																	<div>
-																		<input type="text" name="menu_price" id="menuPrice"
+																		<input type="text" name="menuPrice" id="menuPrice"
 																			value="" placeholder="메뉴 가격을 입력하세요" />
 																	</div>
 																</div>
@@ -263,37 +263,22 @@
 																<div class="form-group">
 																	<label for="menuDivision"> 메뉴분류</label>
 																	<div>
-																		<select class="chosen-select" id="menuDivision"
-																			name="menu_division" data-placeholder="메뉴분류">
-																			<option value="">- 메뉴분류 선택 -</option>
-																			<option value="">Beef</option>
-																			<option value="">Pork</option>
-																			<option value="">Chicken</option>
-																			<option value="">Fish</option>
-																			<option value="">Vegetarian</option>
-																			<option value="">Sandwich</option>
-																			<option value="">Salad</option>
-																			<option value="">Soup</option>
-																			<option value="">Noodle</option>
-																			<option value="">Rice</option>
-																			<option value="">Dessert</option>
-																			<option value="">Drink</option>
-																		</select>
+																		<input type="text" name="menuType" id="menuType"
+																			value="" placeholder="메뉴 분류" />
 																	</div>
 																</div>
 
 																<div class="form-group">
-																	<label for="menuEtc"> 기타사항 입력</label>
+																	<label for="menuContent"> 기타사항 입력</label>
 																	<div>
-																		<input type="text" id="menuEtc" name="menuEtc"
+																		<input type="text" id="menuContent" name="menuContent"
 																			placeholder="예) 원산지, 칼로리, 외국어표기 등 요청사항 입력" />
 																	</div>
 																</div>
 															</div>
 														</div>
 														<!-- row 끝-->
-
-														<button class="btn btn-sm btn-danger btn-round"
+														<button class="btn btn-sm btn-danger btn-round" onclick="insert-btn"
 															type="button">
 															<!-- 메뉴1 save -->
 															<i class="ace-icon fa fa-floppy-o bigger-125"></i> 저장
@@ -307,7 +292,9 @@
 											<!-- panel-collapse collapse in끝-->
 										</div>
 										<!-- panel panel-defult 끝-->
-
+											</div>
+											<!-- panel-collapse collapse in끝-->
+										</div>
 									</div>
 									<!-- accordion-style1 panel-group 끝-->
 								</div>
@@ -380,56 +367,29 @@
 		};
 	</script>
 	<script>
-		var branchList = {};
-
-		/* <c:forEach items="${branchList}" var="branch">
-		branchList['${branch.no}'] = {
-				no:'${branch.no}',
-				name:'${branch.name}',
-				tel:'${branch.tel}'
-				};
-		</c:forEach>
-
-		var branchNo = $('#branchSelect').prop('value');
-		var bno = document.getElementById("bno");
-		var btel = document.getElementById("btel");
-		bno.value = (branchList[branchNo].no);
-		btel.value = (branchList[branchNo].tel);
-		  
-		$('#branchSelect').on('change', function() {
-			var branchNo = $(this).prop('value');
-			bno.value = (branchList[branchNo].no);
-			btel.value = (branchList[branchNo].tel);
-		}) */
-
 		var menuList = {};
-
 		<c:forEach items="${menuList}" var="menu">
-		menuList['${menu.menuNo}'] = {
-			menuNo : '${menu.menuNo}',
+		menuList['${menu.menuName}'] = {
+			/* menuNo:'${menu.menuNo}', */
 			menuType : '${menu.menuType}',
 			menuName : '${menu.menuName}',
 			menuPrice : '${menu.menuPrice}',
-			menuKcal : '${menu.menuKcal}',
-			menuContent : '${menu.menuContent}'
+			menuContent : '${menu.menuContent}',
 		};
 		</c:forEach>
 
 		var mtype = document.getElementById("menuType");
-		var mname = document.getElementById("mname");
-		var mprice = document.getElementById("mprice");
-		var mkcal = document.getElementById("mkcal");
-		var mcontent = document.getElementById("mcontent");
+		var mprice = document.getElementById("menuPrice");
+		var mcontent = document.getElementById("menuContent");
 
-		$('#menuSelect').on('change', function() {
-			var menuNo = $(this).prop('value');
-			mname.value = (menuList[menuNo].menuName);
-			mprice.value = (menuList[menuNo].menuPrice);
-			mkcal.value = (menuList[menuNo].menuKcal);
-			mcontent.value = (menuList[menuNo].menuContent);
+		$('body').on('change', '#menuName1', function() {
+			var menuName = $(this).prop('value');
+			mtype.value = (menuList[menuName].menuType);
+			mprice.value = (menuList[menuName].menuPrice);
+			mcontent.value = (menuList[menuName].menuContent);
 		})
-
-		$.ajax()
+    
+		
 	</script>
 	<script type="text/javascript">
 		jQuery(function($) {
