@@ -31,12 +31,6 @@
     order by mt.mtno 
   </select>
   
-  <select id="confirm" resultMap="menuTemplateMap">
-    select mtcno, mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk, bname
-    from menu_confirm
-    order by mtcno 
-  </select>
-  
   <select id="count" resultType="int">
     select count(*) from menu_temp
   </select>
@@ -58,7 +52,7 @@
     mprice = #{menuPrice},
     mcontent = #{menuContent},
     mdate = #{createDate}
-    where mno = #{menuNo}
+    where mtarea = #{menuArea}
   </update>
   
   <update id="delete" parameterType="int">

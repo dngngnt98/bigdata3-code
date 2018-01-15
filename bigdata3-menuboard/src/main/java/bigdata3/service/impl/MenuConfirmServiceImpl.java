@@ -12,12 +12,17 @@ import bigdata3.service.MenuConfirmService;
 @Service
 public class MenuConfirmServiceImpl implements MenuConfirmService {
 
-  @Autowired
-  MenuConfirmDao menuConfirmDao;
+	@Autowired
+	MenuConfirmDao menuConfirmDao;
 
-  @Override
-  public List<MenuConfirm> confirm() {
-    return menuConfirmDao.confirm();
-  }
+	@Override
+	public List<MenuConfirm> confirmList() {
+		return menuConfirmDao.confirmList();
+	}
+
+	@Override
+	public MenuConfirm selectByTempNo(int menuTempNo) {
+		return menuConfirmDao.selectByTempNo(menuTempNo);
+	}
 
 }

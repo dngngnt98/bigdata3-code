@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -539,14 +540,15 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<!-- PAGE CONTENT BEGINS -->
-							<form class="form-horizontal" role="form" action="update"
+							<form class="form-horizontal" role="form" action="update.do"
 								method="post" enctype="multipart/form-data">
 								<div class="form-group">
 									<label class="col-sm-2 control-label no-padding-right"
 										for="branchSelect"> 매장명 </label>
+
 									<div class="col-sm-5">
-										<input type="text" id="branchSelect" name="branchName"
-											class="col-xs-12" value="${confirm.branchName}"
+										<input type="text" id="branchSelect" name="bno"
+											class="col-xs-12" value="${confirmList.branchName}"
 											placeholder="매장명" />
 									</div>
 								</div>
@@ -559,7 +561,7 @@
 
 									<div class="col-sm-5">
 										<input type="text" id="menuWindow" name="etpno"
-											class="col-xs-12" value="${confirm.menuTempType}"
+											class="col-xs-12" value="${confirmList.menuTempType}"
 											placeholder="메뉴 템플릿" />
 									</div>
 								</div>
@@ -573,102 +575,163 @@
 
 
 								<div class="accordion-style1 panel-group" id="accordian">
-									<c:forEach items="${menuList}" var="item" varStatus="status">
-										<!-- 메뉴보드 상세등록은 아코디언 형식으로! UI 깔끔하게 많은 정보를 입력! -->
-										<div class="12u$">
-											<!-- 위에서 템플릿 선택한것에 따라 메뉴 수 만큼 panel panel-defult 출력 -->
-											<div class="accordion-style1 panel-group" id="accordian">
-												<div class="panel panel-defult">
-													<!-- forEach? -->
+									<div class="panel panel-defult">
+										<!-- forEach? -->
+										<div class="panel-heading">
+											<h4 class="panel-title">
 
-													<div class="panel-heading">
-														<h4 class="panel-title">
-
-															<a class="accordion-toggle" data-toggle="collapse"
-																data-parent="#accordion" href="#collapse${status.index}">
-																<i class="ace-icon fa fa-angle-down bigger-110"
-																data-icon-hide="ace-icon fa fa-angle-down"
-																data-icon-show="ace-icon fa fa-angle-right"></i>
-																&nbsp;메뉴 ${status.index}
-															</a>
-														</h4>
-													</div>
-													<div
-														class="12$ ${status.index eq 0 ? 'panel-collapse collapse in':'panel-collapse collapse'}"
-														id="collapse${status.index}" role="tabpanel"
-														aria-labelledby="headingOne">
-														<div class="panel-body">
-															<div class="widget-main">
-																<div class="row">
-																	<div class="col-xs-12 col-sm-6">
-																		<div class="image fit">
-																			<img class="img-thumbnail" id="output1"
-																				alt="menuboard #1 image" items="" var="path" src="" />
-																		</div>
-																	</div>
-
-																	<div class="col-xs-12 col-sm-6">
-
-																		<div class="form-group">
-																			<label for="menuTitle"> 메뉴명</label>
-																			<div>
-																				<input type="text" name="" id="mname"
-																					value="${confirm.menuName}"
-																					placeholder="메뉴명을 입력하세요" />
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<label for="menuTitle"> 메뉴명</label>
-																			<div>
-																				<input type="text" name="" id="mname"
-																					value="${confirm.menuType}"
-																					placeholder="메뉴명을 입력하세요" />
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<label for="menuTitle"> 가격</label>
-																			<div>
-																				<input type="text" name="" id="mprice"
-																					value="${confirm.menuPrice}"
-																					placeholder="메뉴 가격을 입력하세요" />
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<label for="menuEtc"> 기타사항 입력</label>
-																			<div>
-																				<input type="text" id="mcontent" name="mcontent"
-																					value="${confirm.menuContent}"
-																					placeholder="예) 원산지, 칼로리, 외국어표기 등 요청사항 입력" />
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<!-- row 끝-->
-
-																<button class="btn btn-sm btn-danger btn-round"
-																	type="button">
-																	<!-- 메뉴1 save -->
-																	<i class="ace-icon fa fa-floppy-o bigger-125"></i> 저장
-																</button>
-
-															</div>
-															<!-- widget-main 끝-->
-														</div>
-														<!-- panel-body 끝-->
-													</div>
-
-													<!-- panel-collapse collapse in끝-->
-												</div>
-												<!-- panel panel-defult 끝-->
-											</div>
-											<!-- accordion-style1 panel-group 끝-->
+												<a class="accordion-toggle" data-toggle="collapse"
+													data-parent="#accordion" href="#collapseOne"> <i
+													class="ace-icon fa fa-angle-down bigger-110"
+													data-icon-hide="ace-icon fa fa-angle-down"
+													data-icon-show="ace-icon fa fa-angle-right"></i> &nbsp;메뉴
+													#1
+												</a>
+											</h4>
 										</div>
-									</c:forEach>
+
+										<!-- 첫 인덱스는 반드시 class명 뒤에 in 필요! 각 클래스별 id값 다르니 주의!(id="collapseOne") -->
+										<div class="panel-collapse collapse in" id="collapseOne">
+											<div class="panel-body">
+												<div class="widget-main">
+													<div class="row">
+														<div class="col-xs-12 col-sm-6">
+															<div class="image fit">
+																<img class="img-thumbnail" id="output1"
+																	alt="menuboard #1 image" items="" var="path" src="" />
+															</div>
+														</div>
+
+														<div class="col-xs-12 col-sm-6">
+															<div class="form-group">
+																<label for="menuTitle"> 메뉴 영역</label>
+																<div>
+																	<input type="text" class="col-xs-10" name="menuName"
+																		id="menuName" value="${confirmList.menuArea}"
+																		placeholder="메뉴명 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuTitle"> 메뉴명</label>
+																<div>
+																	<input type="text" class="col-xs-10" name="menuName"
+																		id="menuName" value="${confirmList.menuName}"
+																		placeholder="메뉴명 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuTitle"> 가격</label>
+																<div>
+																	<input type="text" class="col-xs-10" name="menu_price"
+																		id="menuPrice" value="${confirmList.menuPrice}"
+																		placeholder="메뉴 가격 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuDivision"> 메뉴분류</label>
+																<div>
+																	<input type="text" class="col-xs-10"
+																		name="menuDivision" id="menuDivision"
+																		value="${confirmList.menuType}" placeholder="메뉴분류 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuEtc"> 기타사항</label>
+																<div>
+																	<input type="text" class="col-xs-10" id="menuContent"
+																		name="menuContent" value="${confirmList.menuContent}"
+																		placeholder="기타사항 출력 예) 원산지, 칼로리, 외국어표기 등" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- row 끝-->
+
+												</div>
+												<!-- widget-main 끝-->
+											</div>
+											<!-- panel-body 끝-->
+										</div>
+										<!-- panel-collapse collapse in끝-->
+									</div>
+									<!-- panel panel-defult 끝-->
 
 
+									<div class="panel panel-defult">
+										<!-- forEach? -->
+										<div class="panel-heading">
+											<h4 class="panel-title">
+
+												<a class="accordion-toggle collapsed" data-toggle="collapse"
+													data-parent="#accordion" href="#collapseTwo"> <i
+													class="ace-icon fa fa-angle-down bigger-110"
+													data-icon-hide="ace-icon fa fa-angle-down"
+													data-icon-show="ace-icon fa fa-angle-right"></i>&nbsp;메뉴 #2
+												</a>
+											</h4>
+										</div>
+										<!-- 두번째 인덱스부터는 class명 뒤에 in 필요없음! 각 클래스별 id값 다르니 주의!(id="collapseTwo") -->
+										<div class="panel-collapse collapse" id="collapseTwo">
+											<div class="panel-body">
+												<div class="widget-main">
+													<div class="row">
+														<div class="col-xs-12 col-sm-6">
+															<div class="image fit">
+																<img class="img-thumbnail" id="output2"
+																	alt="menuboard #2 image" items="" var="path" src="" />
+															</div>
+														</div>
+
+														<div class="col-xs-12 col-sm-6">
+															<div class="form-group">
+																<label for="menuTitle"> 메뉴명</label>
+																<div>
+																	<input type="text" class="col-xs-10" name="menu_title"
+																		id="menuTitle" value="" placeholder="메뉴명 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuTitle"> 가격</label>
+																<div>
+																	<input type="text" class="col-xs-10" name="menu_price"
+																		id="menuPrice" value="" placeholder="메뉴 가격 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuDivision"> 메뉴분류</label>
+																<div>
+																	<input type="text" class="col-xs-10"
+																		name="menuDivision" id="menuDivision" value=""
+																		placeholder="메뉴분류 출력" />
+																</div>
+															</div>
+
+															<div class="form-group">
+																<label for="menuEtc"> 기타사항</label>
+																<div>
+																	<input type="text" class="col-xs-10" id="menuEtc"
+																		name="menuEtc"
+																		placeholder="기타사항 출력 예) 원산지, 칼로리, 외국어표기 등" />
+																</div>
+															</div>
+														</div>
+													</div>
+													<!-- row 끝-->
+
+												</div>
+												<!-- widget-main 끝-->
+											</div>
+											<!-- panel-body 끝-->
+										</div>
+										<!-- panel-collapse collapse끝-->
+									</div>
+									<!-- panel panel-defult 끝-->
 								</div>
 								<!-- accordion-style1 panel-group 끝-->
 

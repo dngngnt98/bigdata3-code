@@ -9,8 +9,6 @@ public interface MenuTemplateService {
 
   public List<MenuTemplate> menuboard();
   
-  public List<MenuTemplate> confirm();
-
   public void insert(MenuTemplate menuTemplate);
   
   public void sendRequest(MenuTemplate menuTemplate);

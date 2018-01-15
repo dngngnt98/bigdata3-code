@@ -2,7 +2,7 @@ package bigdata3.domain;
 
 import java.sql.Date;
 
-public class MenuConfirm extends Menu {
+public class MenuConfirm{
   // 여기에 지점 참조해야함
   private int menuTempNo;
   private String branchName;

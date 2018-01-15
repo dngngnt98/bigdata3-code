@@ -16,10 +16,23 @@
     <result column="delchk" property="deleteCheck"/>
   </resultMap>
   
-  <select id="confirm" resultMap="menuConfirmMap">
+  <select id="confirmList" resultMap="menuConfirmMap">
     select mtcno, mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk, bname
     from menu_confirm
     order by mtcno 
   </select>
+  
+  <select id="selectByTempNo" resultMap="menuConfirmMap" parameterType="int">
+    select mtcno, mttype, mtarea, mname, mtype, mprice, mcontent, mtdate, delchk, bname
+    from menu_confirm
+    order by mtcno 
+    where mtcno = #{menuTempNo}
+  </select>
+  
+  <update id="update" parameterType="int">
+    update menu_confirm set
+    delchk = 'Y'
+    where mtcno = #{menuTempNo}  
+  </update>
   
 </mapper>

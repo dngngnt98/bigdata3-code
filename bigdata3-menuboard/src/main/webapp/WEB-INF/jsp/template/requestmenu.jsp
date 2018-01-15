@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-  pageContext.setAttribute("ENTER", "\r\n");
+	pageContext.setAttribute("ENTER", "\r\n");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -129,29 +129,29 @@
 
 		<section class="wrapper style1">
 		<div class="inner">
-			<div class="row">
-				<div class="3u 12u$(medium)">
-					<div class="box">
-						<p align="center">
-							<strong>김수빈</strong> 님 반갑습니다.
-						</p>
-						<a href="loginmain.html" class="button special">로그인 페이지 이동</a> <a
-							href="#" class="button alt">로그 아웃</a>
+			<form method="post" action="sendrequest">
+				<div class="row">
+					<div class="3u 12u$(medium)">
+						<div class="box">
+							<p align="center">
+								<strong>김상훈</strong> 님 반갑습니다.
+							</p>
+							<a href="loginmain.html" class="button special">로그인 페이지 이동</a> <a
+								href="#" class="button alt">로그 아웃</a>
+						</div>
+						<div class="box">
+							<ul class="actions vertical">
+								<li><a href="dmb_menu.html" class="button">메뉴보드</a></li>
+								<li><a href="dmb_event.html" class="button">이벤트보드</a></li>
+								<li><a href="iot_control.html" class="button">실내 환경</a></li>
+								<li><a href="store_management.html" class="button">매장관리
+										처음으로 이동</a></li>
+								<li><a href="mypage.html" class="button">마이페이지로 이동</a></li>
+							</ul>
+						</div>
 					</div>
-					<div class="box">
-						<ul class="actions vertical">
-							<li><a href="dmb_menu.html" class="button">메뉴보드</a></li>
-							<li><a href="dmb_event.html" class="button">이벤트보드</a></li>
-							<li><a href="iot_control.html" class="button">실내 환경</a></li>
-							<li><a href="store_management.html" class="button">매장관리
-									처음으로 이동</a></li>
-							<li><a href="mypage.html" class="button">마이페이지로 이동</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="9u$ 12u$(medium)">
-					<div class="box">
-						<form method="post" action="sendrequest">
+					<div class="9u$ 12u$(medium)">
+						<div class="box">
 							<div class="row uniform">
 								<div class="3u 12u$(xsmall)">
 									<h4>매장명</h4>
@@ -176,30 +176,30 @@
 										</select>
 									</div>
 								</div>
-								
+
 								<div class="3u$ 12u$(xsmall)">
-                  <!-- 템플릿 선택후 예제 이미지보기 버튼 클릭시 모달창으로 이미지를 확인할 수 있다. 템플릿 선택에 따라 적합한 미리보기를 띄워야 함 -->
-                  <div class="actions">
-                    <a href="#my-modal" class="button" role="button"
-                      data-toggle="modal">예제 미리보기</a>
-                  </div>
-                </div>
-								
+									<!-- 템플릿 선택후 예제 이미지보기 버튼 클릭시 모달창으로 이미지를 확인할 수 있다. 템플릿 선택에 따라 적합한 미리보기를 띄워야 함 -->
+									<div class="actions">
+										<a href="#my-modal" class="button" role="button"
+											data-toggle="modal">예제 미리보기</a>
+									</div>
+								</div>
+
 								<div class="3u 12u$(xsmall)">
-                  <h4>메뉴 영역</h4>
-                </div>
-                <div class="5u 12u$(xsmall)">
-                  <div class="select-wrapper">
-                    <select id="menuArea" name=menuArea>
-                      <option value="메뉴1" name="menuArea">영역1</option>
-                      <option value="메뉴2" name="menuArea">영역2</option>
-                      <option value="메뉴3" name="menuArea">영역3</option>
-                      <option value="메뉴4" name="menuArea">영역4</option>
-                      <option value="메뉴5" name="menuArea">영역5</option>
-                      <option value="메뉴6" name="menuArea">영역6</option>
-                    </select>
-                  </div>
-                </div>
+									<h4>메뉴 영역</h4>
+								</div>
+								<div class="5u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select id="menuArea" name=menuArea>
+											<option value="메뉴1" name="menuArea">영역1</option>
+											<option value="메뉴2" name="menuArea">영역2</option>
+											<option value="메뉴3" name="menuArea">영역3</option>
+											<option value="메뉴4" name="menuArea">영역4</option>
+											<option value="메뉴5" name="menuArea">영역5</option>
+											<option value="메뉴6" name="menuArea">영역6</option>
+										</select>
+									</div>
+								</div>
 
 								<div class="6u 12u$(xsmall)">
 									<h4>상세 메뉴정보 설정</h4>
@@ -232,9 +232,9 @@
 															<div class="col-xs-12 col-sm-6">
 																<div class="form-group">
 																	<div class="image fit col-xs-12">
-                                    <img class='photo1' id="output" alt="store image"
-                                      src='../download/${menu.uploadList}'>
-                                  </div>
+																		<img class='photo1' id="output" alt="store image"
+																			src='${pageContext.servletContext.contextPath}/images/clifford-yeo-452260.jpg'>
+																	</div>
 																</div>
 															</div>
 
@@ -278,8 +278,8 @@
 															</div>
 														</div>
 														<!-- row 끝-->
-														<button class="btn btn-sm btn-danger btn-round" onclick="insert-btn"
-															type="button">
+														<button class="btn btn-sm btn-danger btn-round"
+															onclick="insert-btn" type="button">
 															<!-- 메뉴1 save -->
 															<i class="ace-icon fa fa-floppy-o bigger-125"></i> 저장
 														</button>
@@ -292,29 +292,28 @@
 											<!-- panel-collapse collapse in끝-->
 										</div>
 										<!-- panel panel-defult 끝-->
-											</div>
-											<!-- panel-collapse collapse in끝-->
-										</div>
 									</div>
-									<!-- accordion-style1 panel-group 끝-->
-								</div>
-
-								<!-- Break -->
-								<div class="12u$">
-									<ul class="actions">
-										<li><input type="submit" value="메뉴 등록 요청하기" /></li>
-										<li><input type="reset" value="등록 취소" class="alt" /></li>
-										<li><input type="button" value="삭제"
-											class="button special" /></li>
-									</ul>
+									<!-- panel-collapse collapse in끝-->
 								</div>
 							</div>
-						</form>
+							<!-- accordion-style1 panel-group 끝-->
+						</div>
+
+						<!-- Break -->
+						<div class="12u$">
+							<ul class="actions">
+								<li><input type="submit" value="메뉴 등록 요청하기" /></li>
+								<li><input type="reset" value="등록 취소" class="alt" /></li>
+								<li><input type="button" value="삭제" class="button special" /></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
 		</div>
-		</section>
+	</div>
+	</div>
+	</section>
 	</div>
 
 	<!-- Footer -->
@@ -375,6 +374,7 @@
 			menuName : '${menu.menuName}',
 			menuPrice : '${menu.menuPrice}',
 			menuContent : '${menu.menuContent}',
+			image : '${menu.menuImage}'
 		};
 		</c:forEach>
 
@@ -388,8 +388,6 @@
 			mprice.value = (menuList[menuName].menuPrice);
 			mcontent.value = (menuList[menuName].menuContent);
 		})
-    
-		
 	</script>
 	<script type="text/javascript">
 		jQuery(function($) {

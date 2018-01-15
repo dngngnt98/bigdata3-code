@@ -306,20 +306,20 @@
 
 	<div class="main-container ace-save-state" id="main-container">
 		<script type="text/javascript">
-			try {
-				ace.settings.loadState('main-container')
-			} catch (e) {
-			}
-		</script>
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) {
+            }
+        </script>
 
 		<div id="sidebar"
 			class="sidebar                  responsive                    ace-save-state">
 			<script type="text/javascript">
-				try {
-					ace.settings.loadState('sidebar')
-				} catch (e) {
-				}
-			</script>
+                try {
+                    ace.settings.loadState('sidebar')
+                } catch (e) {
+                }
+            </script>
 
 			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 				<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -613,16 +613,8 @@
 												<div class="panel-body">
 													<div class="widget-main">
 														<div class="row">
-															<div class="col-xs-12 col-sm-6">
-																<div class="image fit">
-																	<img class="img-thumbnail" id="output1"
-																		alt="menuboard #1 image"
-																		src="../download/${list.menuImage}" />
-																</div>
-															</div>
 
-															<div class="col-xs-12 col-sm-6">
-
+															<div class="col-xs-10 col-sm-5">
 																<div class="form-group">
 																	<label for="menuTitle"> 메뉴명</label>
 																	<div>
@@ -678,7 +670,7 @@
 									<!-- accordion-style1 panel-group 끝-->
 								</div>
 								<div class="clearfix form-actions">
-									<div class="col-md-offset-3 col-md-9">
+									<div class="col-md-offset-3 col-md-6">
 										<button class="btn btn-info" id="active" type="submit">
 											<i class="ace-icon fa fa-hand-o-right bigger-110"></i> 적용
 										</button>
@@ -734,14 +726,14 @@
 		</a>
 	</div>
 	<script>
-	function doList(){
+    function doList(){
         location.href="../template/list";
     }
-	
+    
     function doDelete(templateNo){
         location.href="../template/delete?templateNo="+ templateNo;
     }
-	</script>
+    </script>
 	<!-- /.main-container -->
 
 	<!-- basic scripts -->
@@ -770,8 +762,8 @@
 		src="${pageContext.servletContext.contextPath}/assets/js/ace.min.js"></script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-	
-	var menuList = {};
+    
+    var menuList = {};
     <c:forEach items="${menuList}" var="menu">
     menuList['${menu.menuName}'] = {
       /* menuNo:'${menu.menuNo}', */
@@ -787,94 +779,86 @@
     var mprice = document.getElementById("menuPrice");
     var mcontent = document.getElementById("menuContent");
     var fileName = document.getElementById("output1");
-
     $('#menuName').on('change', function() {
       var menuName = $(this).prop('value');
       mtype.value = (menuList[menuName].menuType);
       mprice.value = (menuList[menuName].menuPrice);
       mcontent.value = (menuList[menuName].menuContent);
-      fileName.value = (menuList[menuName].fileName);
+      fileName.src = (menuList[menuName].fileName);
     })
-	    
+        
     
-	
-		$(function() {
-			$('#id-disable-check').on('click', function() {
-				var inp = $('#form-input-readonly').get(0);
-				if (inp.hasAttribute('disabled')) {
-					inp.setAttribute('readonly', 'true');
-					inp.removeAttribute('disabled');
-					inp.value = "This text field is readonly!";
-				} else {
-					inp.setAttribute('disabled', 'disabled');
-					inp.removeAttribute('readonly');
-					inp.value = "This text field is disabled!";
-				}
-			});
-
-			if (!ace.vars['touch']) {
-				$('.chosen-select').chosen({
-					allow_single_deselect : true
-				});
-				//resize the chosen on window resize
-
-				$(window).off('resize.chosen').on('resize.chosen', function() {
-					$('.chosen-select').each(function() {
-						var $this = $(this);
-						$this.next().css({
-							'width' : $this.parent().width()
-						});
-					})
-				}).trigger('resize.chosen');
-				//resize chosen on sidebar collapse/expand
-				$(document).on('settings.ace.chosen',
-						function(e, event_name, event_val) {
-							if (event_name != 'sidebar_collapsed')
-								return;
-							$('.chosen-select').each(function() {
-								var $this = $(this);
-								$this.next().css({
-									'width' : $this.parent().width()
-								});
-							})
-						});
-
-				$('#chosen-multiple-style .btn').on(
-						'click',
-						function(e) {
-							var target = $(this).find('input[type=radio]');
-							var which = parseInt(target.val());
-							if (which == 2)
-								$('#form-field-select-4').addClass(
-										'tag-input-style');
-							else
-								$('#form-field-select-4').removeClass(
-										'tag-input-style');
-						});
-			}
-
-			$('[data-rel=tooltip]').tooltip({
-				container : 'body'
-			});
-			$('[data-rel=popover]').popover({
-				container : 'body'
-			});
-
-			autosize($('textarea[class*=autosize]'));
-
-			$('textarea.limited').inputlimiter({
-				remText : '%n character%s remaining...',
-				limitText : 'max allowed : %n.'
-			});
-
     
-			$(document).one('ajaxloadstart.page',function(e) {
-				autosize.destroy('textarea[class*=autosize]')
-				$('.limiterBox,.autosizejs').remove();
-				$('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
-			});
-		});
-		
-	</script>
+        $(function() {
+            $('#id-disable-check').on('click', function() {
+                var inp = $('#form-input-readonly').get(0);
+                if (inp.hasAttribute('disabled')) {
+                    inp.setAttribute('readonly', 'true');
+                    inp.removeAttribute('disabled');
+                    inp.value = "This text field is readonly!";
+                } else {
+                    inp.setAttribute('disabled', 'disabled');
+                    inp.removeAttribute('readonly');
+                    inp.value = "This text field is disabled!";
+                }
+            });
+            if (!ace.vars['touch']) {
+                $('.chosen-select').chosen({
+                    allow_single_deselect : true
+                });
+                //resize the chosen on window resize
+                $(window).off('resize.chosen').on('resize.chosen', function() {
+                    $('.chosen-select').each(function() {
+                        var $this = $(this);
+                        $this.next().css({
+                            'width' : $this.parent().width()
+                        });
+                    })
+                }).trigger('resize.chosen');
+                //resize chosen on sidebar collapse/expand
+                $(document).on('settings.ace.chosen',
+                        function(e, event_name, event_val) {
+                            if (event_name != 'sidebar_collapsed')
+                                return;
+                            $('.chosen-select').each(function() {
+                                var $this = $(this);
+                                $this.next().css({
+                                    'width' : $this.parent().width()
+                                });
+                            })
+                        });
+                $('#chosen-multiple-style .btn').on(
+                        'click',
+                        function(e) {
+                            var target = $(this).find('input[type=radio]');
+                            var which = parseInt(target.val());
+                            if (which == 2)
+                                $('#form-field-select-4').addClass(
+                                        'tag-input-style');
+                            else
+                                $('#form-field-select-4').removeClass(
+                                        'tag-input-style');
+                        });
+            }
+            $('[data-rel=tooltip]').tooltip({
+                container : 'body'
+            });
+            $('[data-rel=popover]').popover({
+                container : 'body'
+            });
+            autosize($('textarea[class*=autosize]'));
+            $('textarea.limited').inputlimiter({
+                remText : '%n character%s remaining...',
+                limitText : 'max allowed : %n.'
+            });
+    
+            $(document).one('ajaxloadstart.page',function(e) {
+                autosize.destroy('textarea[class*=autosize]')
+                $('.limiterBox,.autosizejs').remove();
+                $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
+            });
+        });
+        
+    </script>
 </body>
 </html>

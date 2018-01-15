@@ -271,7 +271,6 @@
 											
 											<div class="form-group">
 												<label for="wineventTitle"> 중요 어필 포인트</label>
-
 												<div>
 													<input type="text" name="content" id="wineventTitle"
 														value="" placeholder="10자 이내 입력을 권장합니다." />

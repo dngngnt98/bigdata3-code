@@ -32,16 +32,16 @@ public class MenuTemplateController {
 
 	@Autowired
 	MenuService menuService;
-	
+
 	@Autowired
 	BranchService branchService;
-	
+
 	@Autowired
 	MenuConfirmService menuConfirmService;
 
 	@RequestMapping("new")
 	public String newtemplate(Model model) throws Exception {
-	  List<Branch> branchList = branchService.noSize();
+		List<Branch> branchList = branchService.noSize();
 		List<Menu> menuList = menuService.noneSize();
 		model.addAttribute("branchList", branchList);
 		System.out.println(menuList);
@@ -49,33 +49,41 @@ public class MenuTemplateController {
 
 		return "template/newtemplate";
 	}
-	
+
 	@RequestMapping("confirm")
-  public String eventConfirmPage(Model model) throws Exception {
-	  
-	  List<MenuConfirm> confirm = menuConfirmService.confirm();
-	  System.out.println(confirm);
-	  model.addAttribute("confirm", confirm);
-	  System.out.println(model);
-	  
-    return "template/confirmmenu";
-  }
+	public String eventConfirmPage(Model model) throws Exception {
+
+		List<MenuConfirm> confirmList = menuConfirmService.confirmList();
+		System.out.println(confirmList);
+		model.addAttribute("confirmList", confirmList);
+		System.out.println(model);
+		return "template/confirmlist";
+	}
+	
+	@RequestMapping("confirmmenu")
+	public String confirmmenu(Model model, int menuTempNo) {
+		
+		MenuConfirm confirmList = menuConfirmService.selectByTempNo(menuTempNo);
+		model.addAttribute("confirmList", confirmList);
+		
+		return "redirect:../menuboard/confirm";
+	}
 
 	@RequestMapping("requestmenu")
 	public String request(Model model) throws Exception {
-	  List<Branch> branchList = branchService.noSize();
-	  List<Menu> menuList = menuService.noneSize();
-    System.out.println(menuList);
-    model.addAttribute("branchList", branchList);
-    model.addAttribute("menuList", menuList);
+		List<Branch> branchList = branchService.noSize();
+		List<Menu> menuList = menuService.noneSize();
+		System.out.println(menuList);
+		model.addAttribute("branchList", branchList);
+		model.addAttribute("menuList", menuList);
 		return "template/requestmenu";
 	}
-	
+
 	@RequestMapping("sendrequest")
 	public String send(MenuTemplate menuTemplate) {
-	  System.out.println(menuTemplate);
-	  menuTemplateService.sendRequest(menuTemplate);
-	  return "redirect:../menuboard/requestmenu";
+		System.out.println(menuTemplate);
+		menuTemplateService.sendRequest(menuTemplate);
+		return "redirect:../menuboard/requestmenu";
 	}
 
 	// 관리자에 등록된 메뉴 정보 출력
@@ -95,8 +103,7 @@ public class MenuTemplateController {
 	}
 
 	@RequestMapping("insert")
-	public String insert(MenuTemplate menuTemplate)
-			throws Exception {
+	public String insert(MenuTemplate menuTemplate) throws Exception {
 		menuTemplateService.insert(menuTemplate);
 		return "redirect:../menuboard/new";
 	}

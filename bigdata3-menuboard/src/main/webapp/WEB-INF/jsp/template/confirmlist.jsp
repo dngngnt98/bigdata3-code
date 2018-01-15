@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Store List Admin</title>
+<title>Menu Mgt Admin</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
@@ -16,6 +17,8 @@
 	href="${pageContext.servletContext.contextPath}/assets/css/font-awesome.min.css" />
 
 <!-- page specific plugin styles -->
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/assets/css/jquery-ui.custom.min.css" />
 
 <!-- text fonts -->
 <link rel="stylesheet"
@@ -28,9 +31,28 @@
 
 <!-- Favicon and touch icons -->
 <link rel="icon" href="ico/home_iot.png">
+
+<style>
+.image {
+	border: 0;
+	display: inline-block;
+	position: relative;
+	box-shadow: 0px 0px 0px 7px #fff, 0px 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image.fit {
+	display: block;
+	margin: 0 0 2em 0;
+	width: 100%;
+}
+
+.image.fit img {
+	width: 100%;
+}
+</style>
+
 <!-- ace settings handler -->
-<script
-	src="${pageContext.servletContext.contextPath}/assets/js/ace-extra.min.js"></script>
+<script src="assets/js/ace-extra.min.js"></script>
 </head>
 
 <body class="no-skin">
@@ -281,20 +303,20 @@
 
 	<div class="main-container ace-save-state" id="main-container">
 		<script type="text/javascript">
-			try {
-				ace.settings.loadState('main-container')
-			} catch (e) {
-			}
-		</script>
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) {
+            }
+        </script>
 
 		<div id="sidebar"
 			class="sidebar                  responsive                    ace-save-state">
 			<script type="text/javascript">
-				try {
-					ace.settings.loadState('sidebar')
-				} catch (e) {
-				}
-			</script>
+                try {
+                    ace.settings.loadState('sidebar')
+                } catch (e) {
+                }
+            </script>
 
 			<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 				<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
@@ -325,7 +347,7 @@
 			<!-- /.sidebar-shortcuts -->
 
 			<ul class="nav nav-list">
-				<li class=""><a href="main"> <i
+				<li class="active"><a href="main"> <i
 						class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
 							Dashboard </span>
 				</a> <b class="arrow"></b></li>
@@ -437,7 +459,7 @@
 						<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a>
 						</li>
 						<li><a href="#">Stores</a></li>
-						<li class="active">Store List</li>
+						<li class="active">Store Infomation</li>
 					</ul>
 					<!-- /.breadcrumb -->
 
@@ -504,281 +526,229 @@
 					</div>
 					<!-- /.ace-settings-container -->
 
-
 					<!-- 실제적인 내용은 여기부터 넣으면 됨!! -->
 					<div class="page-header">
 						<h1>
-							메뉴 정보 리스트 <small> <i
-								class="ace-icon fa fa-angle-double-right"></i> 각 메뉴 정보
+							요청 정보 <small> <i
+								class="ace-icon fa fa-angle-double-right"></i> 각 요청 메뉴 정보
 							</small>
 						</h1>
 					</div>
 					<!-- /.page-header -->
 
-					<!-- 타이틀과 메뉴 추가버튼 -->
 					<div class="row">
-						<span class="col-xs-9"><div class="table-header">메뉴
+						<span class="col-xs-9"><div class="table-header">템플릿
 								상세정보</div></span> <span class="col-xs-3">
 							<button class="btn btn-white btn-primary btn-bold">
 								<i class="ace-icon fa fa-cloud-upload hidden-480"></i><a
-									href='../menu/new'>메뉴 추가</a>
+									href='../template/registform'>템플릿 정보 등록</a>
 							</button>
 						</span>
 					</div>
-					<!-- table을 위한 바깥 div 시작 -->
-					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
-							<div class="row">
-								<div class="col-xs-12">
-									<!-- table 시작 -->
-									<table id="simple-table"
-										class="table  table-bordered table-hover">
-										<thead>
-											<tr>
-												<th class="center"><label class="pos-rel"> <input
-														type="checkbox" class="ace" /> <span class="lbl"></span>
-												</label></th>
-												<th class="detail-col">상세</th>
-												<th class="detail-col">번호</th>
-												<th class="hidden-480">분류</th>
-												<th>관리자</th>
-												<th>등록일</th>
-												<th class="hidden-480">setting</th>
-											</tr>
-										</thead>
-										<!-- table body 시작 -->
-										<tbody id="store-tbody">
-											<c:forEach items="${menuList}" var="item">
-												<!-- 객체 전체에 걸쳐 반복 실행? /c:forEach까지 -->
-												<c:choose>
-													<c:when test="${item.deleteCheck eq 'N'}">
-														<tr>
-															<td class="center"><label class="pos-rel"> <input
-																	type="checkbox" class="ace" id="checkbox1"
-																	name="ckbSelect" value="" /> <span class="lbl"></span>
-															</label></td>
-															<td class="center">
-																<div class="action-buttons">
-																	<a href="#" class="green bigger-140 show-details-btn"
-																		title="Show Details"> <i
-																		class="ace-icon fa fa-angle-double-down"></i> <span
-																		class="sr-only">Details</span>
-																	</a>
-																</div>
-															</td>
-															<td class="hidden-480">${item.menuNo}</td>
-															<td class="hidden-480">${item.menuType}</td>
-															<td>관리자</td>
-															<%-- <td>${item.manager}</td> --%>
-															<td>${item.createDate}</td>
-															<td>
-																<div class="hidden-sm hidden-xs btn-group">
-																	<button class="btn btn-xs btn-success">
-																		<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																	</button>
-
-																	<button class="btn btn-xs btn-info">
-																		<i class="ace-icon fa fa-pencil bigger-120"></i>
-																	</button>
-
-																	<button class="btn btn-xs btn-danger" id="btnDelete"
-																		name="btnDelete">
-																		<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																	</button>
-																</div> <!-- 테블릿 or 핸드폰 화면전용 -->
-																<div class="hidden-md hidden-lg">
-																	<div class="inline pos-rel">
-																		<button
-																			class="btn btn-minier btn-primary dropdown-toggle"
-																			data-toggle="dropdown" data-position="auto">
-																			<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+					<form action="update" method="post">
+						<!-- table을 위한 바깥 div 시작 -->
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- table 시작 -->
+										<table id="simple-table"
+											class="table  table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="center"><label class="pos-rel"> <input
+															type="checkbox" class="ace" /> <span class="lbl"></span>
+													</label></th>
+													<th class="detail-col">상세</th>
+													<th class="hidden-480">번호</th>
+													<th class="hidden-480">분류</th>
+													<th class="hidden-480">요청영역</th>
+													<th>등록일</th>
+													<th class="hidden-480">setting</th>
+												</tr>
+											</thead>
+											<!-- table body 시작 -->
+											<tbody id="store-tbody">
+												<c:forEach items="${confirmList}" var="item">
+													<!-- 객체 전체에 걸쳐 반복 실행? /c:forEach까지 -->
+													<c:choose>
+														<c:when test="${item.deleteCheck eq 'N'}">
+															<tr>
+																<td class="center"><label class="pos-rel">
+																		<input type="checkbox" class="ace" id="checkbox1"
+																		name="ckbSelect" value="" /> <span class="lbl"></span>
+																</label></td>
+																<td class="center">
+																	<div class="action-buttons">
+																		<a href="#" class="green bigger-140 show-details-btn"
+																			title="Show Details"> <i
+																			class="ace-icon fa fa-angle-double-down"></i> <span
+																			class="sr-only">Details</span>
+																		</a>
+																	</div>
+																</td>
+																<td class="hidden-480">${item.menuTempNo}</td>
+																<td class="hidden-480">${item.branchName}</td>
+																<td class="hidden-480">${item.menuArea}</td>
+																<td>${item.createDate}</td>
+																<td>
+																	<div class="hidden-sm hidden-xs btn-group">
+																		<button class="btn btn-xs btn-success" id="search-btn">
+																			<i class="ace-icon fa fa-search-plus bigger-120"></i>
 																		</button>
+																		<button class="btn btn-xs btn-info"
+																			onclick="doUpdate(${item.menuTempNo})">
+																			<i class="ace-icon fa fa-pencil bigger-120"></i>
+																		</button>
+																		<button class="btn btn-xs btn-danger"
+																			onclick="doDelete(${item.menuTempNo})">
+																			<i class="ace-icon fa fa-trash-o bigger-120"></i>
+																		</button>
+																	</div> <!-- 테블릿 or 핸드폰 화면전용 -->
+																	<div class="hidden-md hidden-lg">
+																		<div class="inline pos-rel">
+																			<button
+																				class="btn btn-minier btn-primary dropdown-toggle"
+																				data-toggle="dropdown" data-position="auto">
+																				<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+																			</button>
 
-																		<ul
-																			class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																			<li><a href="#" class="tooltip-info"
-																				data-rel="tooltip" title="View"> <span
-																					class="blue"> <i
-																						class="ace-icon fa fa-search-plus bigger-120"></i>
-																				</span>
-																			</a></li>
+																			<ul
+																				class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+																				<li><a href="#" class="tooltip-info"
+																					data-rel="tooltip" title="View"> <span
+																						class="blue"> <i
+																							class="ace-icon fa fa-search-plus bigger-120"></i>
+																					</span>
+																				</a></li>
 
-																			<li><a href="#" class="tooltip-success"
-																				data-rel="tooltip" title="Edit"> <span
-																					class="green"> <i
-																						class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																				</span>
-																			</a></li>
+																				<li><a href="#" class="tooltip-success"
+																					data-rel="tooltip" title="Edit"> <span
+																						class="green"> <i
+																							class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																					</span>
+																				</a></li>
 
-																			<li><a href="#" class="tooltip-error"
-																				data-rel="tooltip" title="Delete" id="btnDelete"
-																				name="btnDelete" onclick="delete(${item.menuNo})">
-																					<span class="red"> <i
-																						class="ace-icon fa fa-trash-o bigger-120"></i>
-																				</span>
-																			</a></li>
-																		</ul>
-																	</div>
-																</div> <!-- 테블릿,핸드폰 전용 div끝 -->
-															</td>
-														</tr>
+																				<li><a href="#" class="tooltip-error"
+																					data-rel="tooltip" title="Delete" id="btnDelete"
+																					name="btnDelete"> <span class="red"> <i
+																							class="ace-icon fa fa-trash-o bigger-120"></i>
+																					</span>
+																				</a></li>
+																			</ul>
+																		</div>
+																	</div> <!-- 테블릿,핸드폰 전용 div끝 -->
+																</td>
+															</tr>
+															<!-- 상세정보 페이지!! -->
+															<tr class="detail-row">
+																<td colspan="8">
+																	<div class="table-detail">
+																		<div class="row">
+																			<div class="col-xs-12 col-sm-7">
+																				<div class="space visible-xs"></div>
+																				<div
+																					class="profile-user-info profile-user-info-striped">
+																					<div class="profile-info-row">
+																						<div class="profile-info-name">요청영역</div>
 
-														<!-- 상세정보 페이지!! -->
-														<tr class="detail-row">
-															<td colspan="8">
-																<div class="table-detail">
-																	<div class="row">
-																		<div class="col-xs-12 col-sm-2">
-																			<div class="text-center">
-																				<img height="150"
-																					class="thumbnail inline no-margin-bottom"
-																					alt="menu image"
-																					src="../download/${item.menuImage.fileName}" /> <br />
-																				<div class="label label-info label-xlg">
-																					<div class="inline position-relative">
-																						<a class="user-title-label">
-																							<i class="ace-icon fa fa-cutlery light-green"></i>
-																							<span class="white">Menu Name</span>
-																						</a>
+																						<div class="profile-info-value">
+																							<i
+																								class="fa fa-map-marker light-orange bigger-110"></i>
+																							<span>${item.menuArea}</span>
+																						</div>
 																					</div>
+
+																					<div class="profile-info-row">
+																						<div class="profile-info-name">메뉴 이름</div>
+
+																						<div class="profile-info-value">
+																							<span>${item.menuName}</span>
+																						</div>
+																					</div>
+
+																					<div class="profile-info-row">
+																						<div class="profile-info-name">메뉴 분류</div>
+																						<div class="profile-info-value">
+																							<span>${item.menuType}</span>
+																						</div>
+																					</div>
+
+																					<div class="profile-info-row">
+																						<div class="profile-info-name">메뉴 가격</div>
+																						<div class="profile-info-value">
+																							<span>${item.menuPrice}</span>
+																						</div>
+																					</div>
+
+																					<div class="profile-info-row">
+																						<div class="profile-info-name">등록일</div>
+
+																						<div class="profile-info-value">
+																							<span>${item.createDate}</span>
+																						</div>
+																					</div>
+
 																				</div>
 																			</div>
-																		</div>
 
-																		<div class="col-xs-12 col-sm-7">
-																			<div class="space visible-xs"></div>
-																			<div
-																				class="profile-user-info profile-user-info-striped">
-																				<div class="profile-info-row">
-																					<div class="profile-info-name">메뉴 분류</div>
+																			<div class="col-xs-12 col-sm-3">
+																				<div class="space visible-xs"></div>
+																				<h4 class="header blue lighter less-margin">템플릿
+																					정보</h4>
+																				<div class="space-6"></div>
 
-																					<div class="profile-info-value">
-																						<i
-																							class="fa fa-map-marker light-orange bigger-110"></i>
-																						<span>${item.menuType}</span>
+																				<form>
+																					<fieldset>
+																						<textarea class="width-100" resize="none"
+																							name="manageContent"
+																							placeholder="${item.menuContent}"></textarea>
+																					</fieldset>
+
+																					<div class="hr hr-dotted"></div>
+
+																					<div class="clearfix">
+																						<label class="pull-left"> <input
+																							id="sendMbtn" type="checkbox" class="ace" /> <span
+																							class="lbl"> 메모 저장</span>
+																						</label>
+
+																						<button
+																							class="pull-right btn btn-sm btn-primary btn-white btn-round"
+																							type="button">
+																							확인 <i
+																								class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
+																						</button>
 																					</div>
-																				</div>
-
-																				<div class="profile-info-row">
-																					<div class="profile-info-name">메뉴 이름</div>
-
-																					<div class="profile-info-value">
-																						<i
-																							class="fa fa-map-marker light-orange bigger-110"></i>
-																						<span>${item.menuName}</span>
-																					</div>
-																				</div>
-
-																				<div class="profile-info-row">
-																					<div class="profile-info-name">메뉴 가격</div>
-
-																					<div class="profile-info-value">
-																						<i
-																							class="fa fa-map-marker light-orange bigger-110"></i>
-																						<span>${item.menuPrice}</span>
-																					</div>
-																				</div>
-
-																				<div class="profile-info-row">
-																					<div class="profile-info-name">메뉴 등록수</div>
-
-																					<div class="profile-info-value">
-																						<span>${count}</span>
-																					</div>
-																				</div>
-
-																				<div class="profile-info-row">
-																					<div class="profile-info-name">menuDate</div>
-
-																					<div class="profile-info-value">
-																						<span>${item.createDate}</span>
-																					</div>
-																				</div>
+																				</form>
 																			</div>
 																		</div>
-
-																		<div class="col-xs-12 col-sm-3">
-																			<div class="space visible-xs"></div>
-																			<h4 class="header blue lighter less-margin">메뉴
-																				설명 메모</h4>
-																			<div class="space-6"></div>
-
-																			<form>
-																				<fieldset>
-																					<textarea class="width-100" resize="none"
-																						name="manageContent"
-																						placeholder="${item.menuContent}"></textarea>
-																				</fieldset>
-
-																				<div class="hr hr-dotted"></div>
-
-																				<div class="clearfix">
-																					<label class="pull-left"> <input
-																						id="sendMbtn" type="checkbox" class="ace" /> <span
-																						class="lbl"> 메모 저장</span>
-																					</label>
-
-																					<button
-																						class="pull-right btn btn-sm btn-primary btn-white btn-round"
-																						type="button">
-																						확인 <i
-																							class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-																					</button>
-																				</div>
-																			</form>
-																		</div>
 																	</div>
-																</div>
-															</td>
-														</tr>
-													</c:when>
-													<c:when test="${item.deleteCheck eq 'Y'}">
-													</c:when>
-												</c:choose>
-											</c:forEach>
-											<!-- forEach 반복 끝? -->
-										</tbody>
-										<!-- table body 끝 -->
-									</table>
-									<div class="pagination">
-										<c:if test="${paging.curGroup > 1}">
-											<a href="javascript:page('1')">[처음]</a>
-										</c:if>
-										<c:if test="${paging.curGroup > 1}">
-											<a href="javascript:page('${paging.prevPage}')">[이전]</a>
-										</c:if>
-										<c:forEach var="num" begin="${paging.groupStart}"
-											end="${paging.groupEnd}">
-											<c:choose>
-												<c:when test="${num == paging.curPage}">
-													<span style="color: red">${num}</span>&nbsp;
-                                    </c:when>
-												<c:otherwise>
-													<a href="javascript:page('${num}')">${num}</a>&nbsp;
-                                    </c:otherwise>
-											</c:choose>
-										</c:forEach>
-										<c:if test="${paging.curGroup < paging.totGroup}">
-											<a href="javascript:page('${paging.nextPage}')">[다음]</a>
-										</c:if>
-										<c:if test="${paging.curPage < paging.totPage}">
-											<a href="javascript:page('${paging.totPage}')">[끝]</a>
-										</c:if>
+																</td>
+															</tr>
+														</c:when>
+														<c:otherwise>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+												<!-- forEach 반복 끝? -->
+											</tbody>
+											<!-- table body 끝 -->
+										</table>
+										<!-- table 끝 -->
 									</div>
-									</table>
-									<!-- table 끝 -->
+									<!-- /.span -->
 								</div>
-								<!-- /.span -->
+								<!-- /.row -->
+
+								<!-- PAGE CONTENT ENDS -->
+
 							</div>
-							<!-- /.row -->
-
-							<!-- PAGE CONTENT ENDS -->
-
+							<!-- /.col -->
 						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
+						<!-- /.row -->
+					</form>
 				</div>
 				<!-- /.page-content -->
 			</div>
@@ -818,14 +788,12 @@
 	<!-- <![endif]-->
 
 	<!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="${pageContext.servletContext.contextPath}/assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 	<script type="text/javascript">
-		if ('ontouchstart' in document.documentElement)
-			document
-					.write("<script src='${pageContext.servletContext.contextPath}/assets/js/jquery.mobile.custom.min.js'>"
-							+ "<" + "/script>");
-	</script>
+        if ('ontouchstart' in document.documentElement) document.write("<script src='${pageContext.servletContext.contextPath}/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+  </script>
+
 	<script
 		src="${pageContext.servletContext.contextPath}/assets/js/bootstrap.min.js"></script>
 
@@ -839,100 +807,81 @@
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-		jQuery(function($) {
-			//select/deselect all rows according to table header checkbox
-			var active_class = 'active';
-			$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on(
-					'click',
-					function() {
-						var th_checked = this.checked;//checkbox inside "TH" table header
-
-						$(this).closest('table').find('tbody > tr').each(
-								function() {
-									var row = this;
-									if (th_checked)
-										$(row).addClass(active_class).find(
-												'input[type=checkbox]').eq(0)
-												.prop('checked', true);
-									else
-										$(row).removeClass(active_class).find(
-												'input[type=checkbox]').eq(0)
-												.prop('checked', false);
-								});
-					});
-
-			//select/deselect a row when the checkbox is checked/unchecked
-			$('#simple-table').on('click', 'td input[type=checkbox]',
-					function() {
-						var $row = $(this).closest('tr');
-						if ($row.is('.detail-row '))
-							return;
-						if (this.checked)
-							$row.addClass(active_class);
-						else
-							$row.removeClass(active_class);
-					});
-
-			/********************************/
-			//add tooltip for small view action buttons in dropdown menu
-			$('[data-rel="tooltip"]').tooltip({
-				placement : tooltip_placement
-			});
-
-			//tooltip placement on right or left
-			function tooltip_placement(context, source) {
-				var $source = $(source);
-				var $parent = $source.closest('table')
-				var off1 = $parent.offset();
-				var w1 = $parent.width();
-
-				var off2 = $source.offset();
-				//var w2 = $source.width();
-
-				if (parseInt(off2.left) < parseInt(off1.left)
-						+ parseInt(w1 / 2))
-					return 'right';
-				return 'left';
-			}
-
-			/***************/
-			$('.show-details-btn').on(
-					'click',
-					function(e) {
-						e.preventDefault();
-						$(this).closest('tr').next().toggleClass('open');
-						$(this).find(ace.vars['.icon']).toggleClass(
-								'fa-angle-double-down').toggleClass(
-								'fa-angle-double-up');
-					});
-			/***************/
-
-			$(document).ready(function() {
-				/*----------------------------------------------------------------
-				 * 키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
-				-----------------------------------------------------------------*/
-				var rowTag = $("table tbody").html();
-				$(".simple-table").data("rowTag", rowTag); //키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
-			});
-			/* ********************************************************
-			 * 체크박스 현재행 삭제 기능 => 현재 에러남...
-			 ******************************************************** */
-
-			function delete(menuNo){
-				 location.href="../menu/delete?menuNo="+menuNo;
-			 }
-
-			/*  
-			function delete_row() {
-			var s_tbody = document.getElementById('store-tbody');
-			if (s_tbody.rows.length < 1) return;
-			// s_tbody.deleteRow(0); // 상단부터 삭제
-			s_tbody.deleteRow( s_tbody.rows.length-1 ); // 하단부터 삭제
-			}
-			 */
-
-		})
-	</script>
-
+    jQuery(function($) {
+                //select/deselect all rows according to table header checkbox
+                var active_class = 'active';
+                $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function(){
+                    var th_checked = this.checked;//checkbox inside TH table header
+                    
+                    $(this).closest('table').find('tbody > tr').each(function(){
+                        var row = this;
+                        if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                        else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+                    });
+                });
+                
+                //select or deselect a row when the checkbox is checked or unchecked
+                $('#simple-table').on('click', 'td input[type=checkbox]' , function(){
+                    var $row = $(this).closest('tr');
+                    if($row.is('.detail-row ')) return;
+                    if(this.checked) $row.addClass(active_class);
+                    else $row.removeClass(active_class);
+                });
+            
+            /********************************/
+                //add tooltip for small view action buttons in dropdown menu
+                $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+                
+                //tooltip placement on right or left
+                function tooltip_placement(context, source) {
+                    var $source = $(source);
+                    var $parent = $source.closest('table')
+                    var off1 = $parent.offset();
+                    var w1 = $parent.width();
+            
+                    var off2 = $source.offset();
+                    
+            
+                    if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+                    return 'left';
+                }
+        
+            /***************/
+                $('.show-details-btn').on('click', function(e) {
+                    e.preventDefault();
+                    $(this).closest('tr').next().toggleClass('open');
+                    $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+                });
+                /***************/
+        
+                $(document).ready(function() {
+            /*----------------------------------------------------------------
+            * 키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
+            -----------------------------------------------------------------*/
+                    var rowTag = $("table tbody").html();
+                    $(".simple-table").data("rowTag", rowTag); //키값 rowTag로 테이블의 기본 row 값의 Html태그 저장
+                });
+            /* ********************************************************
+                * 체크박스 현재행 삭제 기능 => 현재 에러남...
+            ******************************************************** */ 
+                        function rowDelete(obj) {
+                        $("tbody td input[type=checkbox] :checked").each(function() {
+                        $(this).parent().parent().remove()
+                            });
+                        }
+        
+        
+        
+        })
+    </script>
+	<script>
+     function doEdit(menuTempNo){
+       location.href = '../template/update?menuTempNo='+menuTempNo
+     }
+     
+     function doDelete(menuTempNo) {
+       location.href = '../template/confirmmenu?menuTempNo='+menuTempNo
+     }
+  </script>
 </body>
 </html>

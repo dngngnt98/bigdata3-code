@@ -28,7 +28,7 @@
   </select>
   
   <select id="noneSize" resultMap="menuMap">
-    select m.mno, m.mname, m.mprice, m.mcontent, m.mdate, m.delchk, m.manager, mc.mtype, mi.newfilename
+    select m.mno, m.mname, m.mprice, m.mcontent, m.mdate, m.delchk, m.manager, mc.mtype, mi.filename
     from menu m left join menu_category mc
     on m.mcno = mc.mcno
     left join menu_image mi
