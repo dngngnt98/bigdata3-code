@@ -25,4 +25,14 @@ public class MenuConfirmServiceImpl implements MenuConfirmService {
 		return menuConfirmDao.selectByTempNo(menuTempNo);
 	}
 
+	@Override
+	public void update(MenuConfirm menuConfirm) {
+		menuConfirmDao.update(menuConfirm);
+	}
+
+	@Override
+	public void delete(int menuTempNo) {
+		menuConfirmDao.delete(menuTempNo);
+	}
+
 }
